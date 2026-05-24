@@ -1,0 +1,97 @@
+name: Nightly Full Refresh
+
+# Pushed 4 hours earlier from 04:30 UTC to 00:30 UTC to compensate for
+# GitHub Actions queue latency. With typical queue lag the actual run lands
+# in the 4-6 AM UTC window, which is still well after US market close.
+#
+# 00:30 UTC = 8:30 PM ET (EDT) / 7:30 PM ET (EST). Runs after close, before
+# any pre-market data appears.
+#
+# Fast pipeline (no company facts or leadership history):
+# quotes → 5-year history → FRED macro → regime → Markov → ETF holdings → commit
+#
+# Slower steps moved to separate workflows:
+# • company-facts.yml runs every 3 weeks (Sunday 02:00 UTC) — Wikidata board/exec fetch
+# • leadership-history.yml runs weekly (Monday 04:00 UTC) — career history/cross-ticker links
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: trapp2-nightly
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Fetch quotes + fundamentals
+        run: python pipeline/fetch_data.py
+
+      - name: Fetch 5-year price history
+        run: python pipeline/fetch_history.py
+
+      - name: Fetch FRED macro series
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python pipeline/fetch_macro.py
+
+      - name: Compute signals
+        run: python pipeline/compute_signals.py
+
+      - name: Classify regime + append snapshot
+        run: python pipeline/classify_regime.py
+
+      - name: Compute Markov transitions
+        run: python pipeline/compute_transitions.py
+
+      - name: Fetch ETF holdings (issuer-direct CSV downloads)
+        # Best-effort: never fail the workflow if an issuer changes their URL.
+        # Each ETF is fetched independently; partial success commits what worked.
+        run: python pipeline/fetch_etf_holdings.py || echo "ETF holdings step had errors but continuing"
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Stage every file under data/ (including untracked files like regime_current.json)
+          git add -A data/
+          # Show what's about to be committed (useful for debugging in workflow logs)
+          echo "=== git status before commit ==="
+          git status --short
+          echo "=== files staged ==="
+          git diff --staged --name-only
+          if git diff --staged --quiet; then
+            echo "No nightly changes to commit"
+          else
+            git commit -m "Nightly refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            # Push with retry — if remote moved (another workflow committed in parallel),
+            # rebase our commit on top and retry. --autostash here is harmless because
+            # all our changes are already committed.
+            for i in 1 2 3; do
+              if git push; then
+                echo "Push succeeded on attempt $i"
+                break
+              fi
+              echo "Push attempt $i failed, rebasing and retrying"
+              git pull --rebase --autostash origin main || git pull --rebase --autostash origin master
+              sleep 4
+            done
+          fi
