@@ -15,7 +15,7 @@ name: Leadership History Refresh A-M (Weekly)
 
 on:
   schedule:
-    - cron: '0 4 ? * MON'  # Every Monday 04:00 UTC
+    - cron: '0 4 * * 1'  # Every Monday 04:00 UTC
   workflow_dispatch:
 
 concurrency:
@@ -25,9 +25,11 @@ concurrency:
 jobs:
   refresh-leadership-am:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
+
     permissions:
       contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,36 +46,48 @@ jobs:
       - name: Fetch CEO/leadership career history A-M (Wikidata)
         run: |
           echo "=== company files in scope (A-M) ==="
-          ls data/company/ | grep -v '^_' | awk 'toupper(substr($0,1,1)) >= "A" && toupper(substr($0,1,1)) <= "M"' | wc -l
-          echo "tickers"
+
+          if [ -d data/company/ ]; then
+            ls data/company/ | grep -v '^_' | awk 'toupper(substr($0,1,1)) >= "A" && toupper(substr($0,1,1)) <= "M"' | wc -l
+            echo "tickers"
+          else
+            echo "data/company/ directory missing"
+          fi
+
           echo "=== running fetch_ceo_tracker.py --start A --end M ==="
+
           python pipeline/fetch_ceo_tracker.py --start A --end M || echo "CEO tracker A-M had errors but continuing"
+
           echo "=== leadership files after run ==="
+
           ls -la data/leadership/by_ticker/ 2>/dev/null | wc -l || echo "no by_ticker dir"
           ls -la data/leadership/by_person/ 2>/dev/null | wc -l || echo "no by_person dir"
 
       - name: Commit & push
-        # Pull --rebase before commit because the N-Z workflow may have written
-        # to the same _manifest.json file. The script's merge-on-write logic
-        # handles content-level merging; here we just need git to accept the
-        # parallel commits.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage all generated leadership files
           git add -A data/leadership/
+
           echo "=== git status before commit ==="
           git status --short
+
+          echo "=== files staged ==="
+          git diff --staged --name-only
+
+          # Exit cleanly if nothing changed
           if git diff --staged --quiet; then
             echo "No leadership A-M changes to commit"
-          else
-            git commit -m "Leadership history refresh A-M $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            for i in 1 2 3 4 5; do
-              if git push; then
-                echo "Push succeeded on attempt $i"
-                break
-              fi
-              echo "Push attempt $i failed, rebasing and retrying"
-              git pull --rebase --autostash origin main || git pull --rebase --autostash origin master
-              sleep 5
-            done
+            exit 0
           fi
+
+          # Create commit
+          git commit -m "Leadership history refresh A-M $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # Fetch latest remote state
+          git fetch origin main
+
+          # Push generated artifacts safely without rebasing
+          git push --force-with-lease origin HEAD:main
