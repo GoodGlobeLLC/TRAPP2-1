@@ -27,7 +27,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-quotes
+  group: trapp2-1-quotes
   cancel-in-progress: false   # don't kill a run mid-fetch
 
 jobs:
