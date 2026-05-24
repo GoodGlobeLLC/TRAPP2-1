@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-company-facts
+  group: trapp2-1-company-facts
   cancel-in-progress: false
 
 jobs:
