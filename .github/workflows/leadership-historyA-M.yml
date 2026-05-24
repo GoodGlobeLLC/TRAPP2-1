@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-leadership-am
+  group: trapp2-1-leadership-am
   cancel-in-progress: false
 
 jobs:
