@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-leadership-nz
+  group: trapp2-1-leadership-nz
   cancel-in-progress: false
 
 jobs:
