@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-regime
+  group: trapp2-1-regime
   cancel-in-progress: false
 
 jobs:
