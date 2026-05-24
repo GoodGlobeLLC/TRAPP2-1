@@ -18,381 +18,32 @@
 # ============================================================
 
 # Equities
-AAPL
-MSFT
-NVDA
-GOOGL
-GOOG
-META
-AMZN
-TSLA
-AVGO
-ORCL
-TSLL
-SPY
-^TNX
-SPX
-GC=F
-BTC-USD
-SPXS
-VIX
-MSFD
-SPYU
-AMZU
-RKT
-VELO
-BIGGQ
-SOFI
-SOXL
-NRGU
-SQQQ
-DOGE
-SH
-XRT
-DJT
-FTSE
-OPY
-MCHB
-PYPL
-ZSL
-OILD
-UPLD
-LPRO
-TMUS
-V
-HIMX
-ANET
-STX
-XLE
-XLP
-XLB
-XLI
-XLU
-XLRE
-XLC
-XLV
-XLY
-XLK
-XLF
-TCEHY
-GDXG
-UCO
-SCO
-PBRG
-CTM
-BZFD
-USBC
-MGTN
-XLRSR
-XLG
-QQQ
-NDX
-RUT
-XSP
-CVNA
-FNDA
-IMST
-LI
-MTRX
-TSM
-COIN
-XYZ
-WGMI
-BLOK
-ETHW
-ETHA
-VTV
-VTI
-NFG
-KWEB
-LYFT
-IWM
-VWO
-VXUS
-EU
-PLTR
-AMD
-AM
-TEM
-CRWD
-VST
-PANW
-MOH
-BABA
-GME
-CRM
-ADBE
-ACN
-IBM
-INTU
-HD
-MCD
-BKNG
-LOW
-NKE
-TJX
-SBUX
-CMG
-ABNB
-F
-GE
-CAT
-RTX
-HON
-UNP
-BA
-LMT
-DE
-UPS
-ETN
-NOC
-WM
-JPM
-BAC
-WFC
-GS
-MS
-BLK
-C
-AXP
-SCHW
-BX
-PGR
-SPGI
-XOM
-CVX
-EOG
-SLB
-PSX
-MPC
-OXY
-PXD
-VLO
-WMB
-KMI
-PG
-COST
-WMT
-KO
-PEP
-PM
-MO
-MDLZ
-CL
-TGT
-KMB
-GIS
-LLY
-UNH
-JNJ
-MRK
-ABBV
-TMO
-ABT
-PFE
-DHR
-BMY
-AMGN
-CVS
-NEE
-SO
-DUK
-CEG
-AEP
-D
-SRE
-PCG
-EXC
-XEL
-ED
-PEG
-PLD
-AMT
-EQIX
-WELL
-SPG
-O
-PSA
-CCI
-DLR
-EXR
-AVB
-VICI
-CSCO
-COP
-SNDK
-FIG
-AAOI
-NFLX
+
 
 # Major ETFs (additional beyond what's above)
-DIA
-VOO
+
 
 # Government Bonds and LT treasuries
-TLT
-IEF
-SHY
-BIL
-GOVT
-TIP
-SCHP
-BND
-LQD
-AGG
-HYG
-JNK
-MBB
-EMB
-BNDX
-VCSH
 
 # Metals
-GLD
+
 
 # Futures / Commodities
-ES=F
-YM=F
-NQ=F
-ZS=F
-CT=F
-SI=F
-ZC=F
-ZW=F
-CL1!
-NG1!
-RTY1!
-NQ1!
-ES1!
-YM1!
-BTC1!
-CL=F
-RTY=F
-ZB=F
-ZN=F
-ZF=F
-ZT=F
-MGC=F
-SIL=F
-PL=F
-HG=F
-PA=F
-HO=F
-NG=F
-RB=F
-BZ=F
-B0=F
-ZO=F
-KE=F
-ZR=F
-ZM=F
-ZL=F
-GF=F
-HE=F
-LE=F
-CC=F
-KC=F
-LBS=F
-OJ=F
-SB=F
 
 # World Indices
-^MERV
-^XDE
-^GSPTSE
-^VIX
-^GSPC
-^DJI
-^IXIC
-^NYA
-^XAX
-^BUK100P
-^RUT
-^FTSE
-^GDAXI
-^FCHI
-^STOXX50E
-^N100
-^BFX
-MOEX.ME
-^HSI
-^STI
-^AXJO
-^BSESN
-^JKSE
-^KLSE
-^NZ50
-^KS11
-^TWII
-^BVSP
-^MXX
-^IPSA
-^TA125.TA
-^CASE30
-^JN0U.JO
-DX-Y.NYB
-^125904-USD-STRD
-^XDB
-000001.SS
-^N225
-^XDN
-^XDA
 
 # Currencies
-EURUSD=X
-JPY=X
-GBPUSD=X
-AUDUSD=X
-NZDUSD=X
-EURJPY=X
-GBPJPY=X
-EURBGP=X
-EURCAD=X
-EURSEK=X
-EURCHF=X
-EURHUF=X
-CNY=X
-HKD=X
-SGD=X
-INR=X
-MXN=X
-PHP=X
-IDR=X
-THB=X
-MYR=X
-ZAR=X
-RUB=X
+
 
 # Crypto
-USDT-USD
-BNB-USD
-ETH-USD
-XRP-USD
-SOL-USD
-DOGE-USD
-STETH-USD
-USDC-USD
 
 # Mutual funds
-UHPIX
-UHPSX
-RSNYX
-RSNRX
-ENPIX
-RGNCX
 
 # Private
-SPAX.PVT
-OPAI.PVT
-ANTH.PVT
-STRI.PVT
-DATB.PVT
+
 
 # Options
-ZSL260522C00001000
-MVIS260522C00002000
-BULL260522C00001500
-SPY261204C00800000
+
 
 # ============================================================
 # EXPANDED COVERAGE — added equities with strong Wikidata coverage
@@ -400,138 +51,46 @@ SPY261204C00800000
 # ============================================================
 
 # Mega-cap additions
-BRK.B
-MA
+
 
 # Industrials / aero / defense
-GD
-EMR
-ITW
-PH
-ROK
+
 
 # Consumer discretionary / services
-DASH
-EA
-TTWO
-RBLX
-PINS
-SNAP
-MTCH
-DIS
-ROST
-YUM
+
 
 # Tech / SaaS (high Wikidata coverage)
-ASML
-MU
-TXN
-ARM
-FTNT
-SNOW
-DDOG
-NET
-ZS
-MDB
-WDAY
-TEAM
-LRCX
-KLAC
-INTC
-QCOM
+
 
 # Communication services
-T
-VZ
-CMCSA
-WBD
-PARA
-SPOT
 
 # Financials (additional)
-COF
-TFC
-MCO
-ICE
-CME
-CB
-TRV
-AIG
-ALL
-AFL
-MET
-PRU
+
 
 # Energy / materials (additional)
-HES
-DVN
-FANG
-HAL
-BKR
-OKE
+
 
 # Healthcare (additional)
-SYK
-ZTS
-HCA
-CI
-HUM
-ELV
-EW
-DXCM
-IDXX
-A
-IQV
-RMD
-MCK
-COR
 
 # Consumer staples (additional)
-HSY
-K
-KHC
-STZ
-SYY
-EL
+
 
 # Materials (additional)
-PPG
-ECL
-NEM
-FCX
-DD
-DOW
-NUE
-LIN
-APD
-SHW
+
 
 # Transportation (additional)
-NSC
-CSX
-FDX
-ODFL
-JBHT
-CHRW
-EXPD
+
 
 # Auto / EV
-RIVN
-LCID
-GM
+
 
 # Banks (additional)
-USB
-PNC
+
 
 # Recent IPOs / growth (additional)
-SHOP
-SQ
-HOOD
 
 # Meme listings
-BBBY
-AMC
+
 
 # Additional consumer / mobility
-UBER
+
