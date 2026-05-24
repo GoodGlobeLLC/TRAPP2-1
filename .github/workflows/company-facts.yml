@@ -26,8 +26,10 @@ jobs:
   refresh-company-facts:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+
     permissions:
       contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,6 +49,7 @@ jobs:
         # Best-effort: individual ticker failures don't break the workflow.
         run: |
           echo "=== tickers.txt diagnostic ==="
+
           if [ -f data/tickers.txt ]; then
             echo "data/tickers.txt EXISTS — $(wc -l < data/tickers.txt) lines"
             echo "First 10 non-comment lines:"
@@ -54,26 +57,47 @@ jobs:
           else
             echo "data/tickers.txt MISSING — script will use built-in fallback (85 tickers)"
           fi
+
           echo "=== existing data/company/ contents ==="
           ls -la data/company/ 2>/dev/null | head -20 || echo "(directory does not exist yet)"
+
           echo "=== running fetch_company_facts.py ==="
           python pipeline/fetch_company_facts.py || echo "Company facts step had errors but continuing"
+
           echo "=== company files after run ==="
-          ls data/company/ | wc -l
-          ls data/company/ | head -20
+
+          if [ -d data/company/ ]; then
+            ls data/company/ | wc -l
+            ls data/company/ | head -20
+          else
+            echo "data/company/ directory not created"
+          fi
 
       - name: Commit company facts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage all generated company fact files
           git add -A data/company/
+
+          echo "=== git status before commit ==="
+          git status --short
+
+          echo "=== files staged ==="
+          git diff --staged --name-only
+
+          # Exit cleanly if nothing changed
           if git diff --staged --quiet; then
             echo "No company-facts changes to commit"
-          else
-            git commit -m "Company facts refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            for i in 1 2 3; do
-              if git push; then break; fi
-              git pull --rebase --autostash origin main || git pull --rebase --autostash origin master
-              sleep 4
-            done
+            exit 0
           fi
+
+          # Create commit
+          git commit -m "Company facts refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # Fetch latest remote state
+          git fetch origin main
+
+          # Push generated artifacts safely without rebasing
+          git push --force-with-lease origin HEAD:main
