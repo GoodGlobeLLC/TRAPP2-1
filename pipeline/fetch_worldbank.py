@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TRAPP2 — World Bank countries and development indicators fetcher.
+TRAPP2-1 — World Bank countries and development indicators fetcher.
 
 Fetches World Bank data via their public API (no key required):
 - Countries list: https://api.worldbank.org/v2/country
