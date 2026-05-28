@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TRAPP2 — Consolidated FRED macro trade series aggregator.
+TRAPP2-1 — Consolidated FRED macro trade series aggregator.
 
 Reads individual FRED series from data/macro/*.json (created by fetch_macro.py)
 and writes a consolidated data/macro_trade.json with latest values for each series.
