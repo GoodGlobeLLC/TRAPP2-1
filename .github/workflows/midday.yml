@@ -38,13 +38,8 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
 
-      - name: Fetch FRED macro series
-        env:
-          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      - name: Consolidate FRED macro series to macro_trade.json
         run: python pipeline/fetch_macro.py
-
-      - name: Consolidate macro series to macro_trade.json
-        run: python pipeline/fetch_macro_trade.py
 
       - name: Fetch World Bank country data
         run: python pipeline/fetch_worldbank.py
