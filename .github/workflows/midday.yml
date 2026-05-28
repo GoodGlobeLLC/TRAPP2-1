@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-1-regime
+  group: trapp2-regime
   cancel-in-progress: false
 
 jobs:
@@ -42,6 +42,12 @@ jobs:
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python pipeline/fetch_macro.py
+
+      - name: Consolidate macro series to macro_trade.json
+        run: python pipeline/fetch_macro_trade.py
+
+      - name: Fetch World Bank country data
+        run: python pipeline/fetch_worldbank.py
 
       - name: Compute signals
         run: python pipeline/compute_signals.py
