@@ -9,6 +9,7 @@ Requires: yfinance  (pip install yfinance)
 """
 import json
 import datetime
+import os
 import sys
 
 try:
@@ -16,6 +17,10 @@ try:
 except ImportError:
     print("yfinance not installed. Run: pip install yfinance", file=sys.stderr)
     sys.exit(1)
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+OUT_PATH = os.path.join(REPO_ROOT, "data", "crypto", "prices.json")
 
 # Mirror the crypto tickers in your tickers.txt
 CRYPTO_SYMBOLS = [
@@ -67,9 +72,10 @@ def main():
         "source": "fetch_crypto.py (yfinance)",
         "prices": prices,
     }
-    with open("data/crypto/prices.json", "w") as f:
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w") as f:
         json.dump(out, f, indent=2)
-    print(f"Wrote {len(prices)} crypto prices to data/crypto/prices.json")
+    print(f"Wrote {len(prices)} crypto prices to {OUT_PATH}")
 
 if __name__ == "__main__":
     main()
