@@ -9,10 +9,15 @@ equities (SK hynix, Hyundai) not converting to USD.
 
 Run every 15-30 min via GitHub Actions since FX is a ~24h market.
 
+Output path resolution: writes to <repo-root>/data/fx/rates.json regardless of
+where the script is invoked from. The script lives in pipeline/ but the data
+must land at the repo root so the app can fetch it from raw.githubusercontent.
+
 Requires: yfinance  (pip install yfinance)
 """
 import json
 import datetime
+import os
 import sys
 
 try:
@@ -20,6 +25,11 @@ try:
 except ImportError:
     print("yfinance not installed. Run: pip install yfinance", file=sys.stderr)
     sys.exit(1)
+
+# Resolve repo root = parent of the directory this script lives in (pipeline/).
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)               # pipeline/ -> repo root
+OUT_PATH = os.path.join(REPO_ROOT, "data", "fx", "rates.json")
 
 # currency -> (yahoo symbol, quote_convention)
 #   "inverse" = symbol is USD/<ccy> (units of ccy per USD), so usdPer = 1/price
@@ -93,9 +103,10 @@ def main():
         "source": "fetch_fx.py (yfinance)",
         "rates": rates,
     }
-    with open("data/fx/rates.json", "w") as f:
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w") as f:
         json.dump(out, f, indent=2)
-    print(f"Wrote {len(rates)} FX rates to data/fx/rates.json")
+    print(f"Wrote {len(rates)} FX rates to {OUT_PATH}")
 
 if __name__ == "__main__":
     main()
