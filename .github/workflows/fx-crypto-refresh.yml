@@ -32,10 +32,10 @@ jobs:
         run: pip install yfinance
 
       - name: Fetch FX rates
-        run: python fetch_fx.py
+        run: python pipeline/fetch_fx.py
 
       - name: Fetch crypto prices
-        run: python fetch_crypto.py
+        run: python pipeline/fetch_crypto.py
 
       - name: Commit if changed
         run: |
