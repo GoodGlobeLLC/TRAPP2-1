@@ -1,0 +1,50 @@
+name: FX + Crypto Refresh (24h markets)
+
+# FX and crypto trade ~24h, so refresh them far more frequently than the
+# nightly equity sheet. Every 15 minutes during the week; you can widen the
+# cron if you want to conserve Actions minutes.
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes (UTC)
+  workflow_dispatch: {}        # allow manual runs
+
+# Avoid overlapping runs if one takes longer than the interval
+concurrency:
+  group: fx-crypto-refresh
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install yfinance
+
+      - name: Fetch FX rates
+        run: python fetch_fx.py
+
+      - name: Fetch crypto prices
+        run: python fetch_crypto.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/fx/rates.json data/crypto/prices.json
+          if git diff --staged --quiet; then
+            echo "No changes."
+          else
+            git commit -m "FX/crypto refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
