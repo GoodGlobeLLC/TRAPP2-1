@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "fetchedAt": "2026-05-29T07:55:22.199276Z",
+  "fetchedAt": "2026-06-01T10:15:01.389650Z",
   "people": [
     {
       "qid": "Q90959587",
@@ -77,10 +77,10 @@
         "birthPlace": "Beirut",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Noubar%20Afeyan%20at%20Global%20Innovation%20Forum%202022%2C%20Yerevan%2C%20Armenia%20by%20Xelgen.jpg",
         "occupations": [
-          "entrepreneur",
           "businessperson",
-          "donor",
-          "inventor"
+          "entrepreneur",
+          "inventor",
+          "donor"
         ],
         "education": [
           "McGill University",
@@ -134,6 +134,11 @@
         ],
         "employers": [
           {
+            "company": "University of Michigan",
+            "start": null,
+            "end": null
+          },
+          {
             "company": "National Heart, Lung, and Blood Institute",
             "start": null,
             "end": null
@@ -145,11 +150,6 @@
           },
           {
             "company": "Brigham and Women's Hospital",
-            "start": null,
-            "end": null
-          },
-          {
-            "company": "University of Michigan",
             "start": null,
             "end": null
           }
@@ -169,17 +169,17 @@
         "birthPlace": "Albany",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Langer.jpg",
         "occupations": [
-          "chemical engineer",
           "engineer",
-          "inventor",
-          "biotechnologist",
           "university teacher",
-          "biochemist"
+          "biochemist",
+          "chemical engineer",
+          "biotechnologist",
+          "inventor"
         ],
         "education": [
-          "Cornell University",
           "The Milne School",
           "Cornell University College of Engineering",
+          "Cornell University",
           "Massachusetts Institute of Technology"
         ],
         "employers": [
@@ -209,9 +209,9 @@
         "birthPlace": "Haifa",
         "image": null,
         "occupations": [
-          "physician",
+          "researcher",
           "professor",
-          "researcher"
+          "physician"
         ],
         "education": [
           "Hebrew Reali School",
@@ -219,6 +219,11 @@
           "National Cancer Institute"
         ],
         "employers": [
+          {
+            "company": "University of Pennsylvania",
+            "start": null,
+            "end": null
+          },
           {
             "company": "Moderna",
             "start": null,
@@ -231,11 +236,6 @@
           },
           {
             "company": "GSK",
-            "start": null,
-            "end": null
-          },
-          {
-            "company": "University of Pennsylvania",
             "start": null,
             "end": null
           }
@@ -299,8 +299,8 @@
         "birthPlace": "Agadir",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Moncef%20Slaoui%20%28cropped%29.jpg",
         "occupations": [
-          "researcher",
-          "immunologist"
+          "immunologist",
+          "researcher"
         ],
         "education": [
           "Tufts University School of Medicine",
@@ -326,16 +326,6 @@
             "end": "2020-01-01"
           },
           {
-            "company": "Intellia Therapeutics",
-            "start": "2017-07-24",
-            "end": "2017-08-09"
-          },
-          {
-            "company": "Galvani Bioelectronics",
-            "start": "2016-01-01",
-            "end": null
-          },
-          {
             "company": "University of Mons",
             "start": null,
             "end": null
@@ -349,6 +339,16 @@
             "company": "International AIDS Vaccine Initiative",
             "start": "2015-01-01",
             "end": "2017-01-01"
+          },
+          {
+            "company": "Intellia Therapeutics",
+            "start": "2017-07-24",
+            "end": "2017-08-09"
+          },
+          {
+            "company": "Galvani Bioelectronics",
+            "start": "2016-01-01",
+            "end": null
           }
         ],
         "positions": []
