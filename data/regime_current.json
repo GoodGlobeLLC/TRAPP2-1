@@ -4,9 +4,9 @@
   "confidence": 0.981,
   "scores": {
     "macro": 0.708,
-    "liquidity": 0.585,
-    "volatility": 0.746,
-    "valuation": -0.36,
+    "liquidity": 0.588,
+    "volatility": 0.787,
+    "valuation": -0.348,
     "trend": 1.0,
     "breadth": -1.0,
     "commodity": 0.18,
@@ -23,12 +23,12 @@
     "crypto": 1.0
   },
   "current_probabilities": {
-    "expansion": 0.465,
-    "risk_on_melt_up": 0.0627,
-    "inflation_shock": 0.0132,
-    "recession_fear": 0.0007,
-    "risk_off": 0.0218,
-    "neutral": 0.4365
+    "expansion": 0.4741,
+    "risk_on_melt_up": 0.0654,
+    "inflation_shock": 0.0124,
+    "recession_fear": 0.0006,
+    "risk_off": 0.02,
+    "neutral": 0.4275
   },
   "drivers": [
     {
@@ -46,11 +46,11 @@
       "direction": "bearish"
     },
     {
-      "signal": "crypto",
-      "score": -0.748,
+      "signal": "volatility",
+      "score": 0.787,
       "confidence": 1.0,
-      "weight": 0.748,
-      "direction": "bearish"
+      "weight": 0.787,
+      "direction": "bullish"
     }
   ],
   "signal_notes": {
@@ -61,19 +61,19 @@
     },
     "liquidity": {
       "t10y2y": 0.42,
-      "hy_spread": 2.75,
-      "hy_spread_z": -1.04,
+      "hy_spread": 2.74,
+      "hy_spread_z": -1.06,
       "hyg_minus_lqd_1m": NaN
     },
     "volatility": {
-      "vix_level": 16.06,
-      "vix9d_over_vix": 0.835
+      "vix_level": 15.4,
+      "vix9d_over_vix": 0.8708
     },
     "valuation": {
-      "spy_pe": 28.26,
-      "earnings_yield": 0.0354,
+      "spy_pe": 27.11,
+      "earnings_yield": 0.0369,
       "real_10y": 0.0054,
-      "fed_model_spread": 0.03
+      "fed_model_spread": 0.0315
     },
     "trend": {
       "spy_price": NaN,
@@ -100,7 +100,7 @@
       "n_components": 3
     }
   },
-  "computed_at": "2026-06-05T04:58:17+00:00",
+  "computed_at": "2026-06-05T17:32:20+00:00",
   "transitions": {
     "1_step": {
       "expansion": 0.6429,
@@ -188,5 +188,5 @@
   ],
   "transition_observation_count": 12,
   "transition_warning": "Only 12 transitions observed \u2014 need \u226560 for high confidence",
-  "transitions_computed_at": "2026-06-05T04:58:17+00:00"
+  "transitions_computed_at": "2026-06-05T17:32:20+00:00"
 }
