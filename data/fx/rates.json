@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-06-07T16:05:08.649695Z",
+  "updatedAt": "2026-06-07T17:39:06.015917Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -86,8 +86,8 @@
       "pair": "USDDKK=X"
     },
     "BRL": {
-      "usdPer": 0.19338245,
-      "perUsd": 5.1711,
+      "usdPer": 0.19412953,
+      "perUsd": 5.1512,
       "pair": "USDBRL=X"
     },
     "MXN": {
@@ -101,8 +101,8 @@
       "pair": "USDZAR=X"
     },
     "SAR": {
-      "usdPer": 0.26633995,
-      "perUsd": 3.7546,
+      "usdPer": 0.26634706,
+      "perUsd": 3.7545,
       "pair": "USDSAR=X"
     },
     "ILS": {
@@ -131,13 +131,13 @@
       "pair": "USDRUB=X"
     },
     "PLN": {
-      "usdPer": 0.27179822,
-      "perUsd": 3.6792,
+      "usdPer": 0.27190168,
+      "perUsd": 3.6778,
       "pair": "USDPLN=X"
     },
     "TRY": {
-      "usdPer": 0.02171954,
-      "perUsd": 46.0415,
+      "usdPer": 0.02170624,
+      "perUsd": 46.069698,
       "pair": "USDTRY=X"
     }
   }
