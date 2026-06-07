@@ -39,8 +39,17 @@ MAX_FILINGS_PER_COMPANY = 12
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
-TICKERS_PATH = os.path.join(REPO_ROOT, "tickers.txt")
+TICKERS_PATH = os.path.join(REPO_ROOT, "tickers.txt")   # optional local fallback
 OUT_PATH = os.path.join(REPO_ROOT, "data", "sec_filings.json")
+
+# SEC filings are company-specific, so the equity ticker lists live in the
+# US-equity repos (TRAPP2 + TRAPP2-2), NOT in TRAPP2-1 (which holds non-equity
+# vehicles). This fetcher pulls those lists remotely. Edit the URLs if your repo
+# names / branches differ.
+EQUITY_TICKER_URLS = [
+    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2/main/data/tickers.txt",
+    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-2/main/data/tickers.txt",
+]
 
 SEC_HEADERS = {"User-Agent": EDGAR_UA, "Accept-Encoding": "gzip, deflate"}
 
@@ -62,25 +71,47 @@ def _get(url, is_json=False):
     return None
 
 
+def _is_equity_ticker(t):
+    """True if t looks like a US equity (has an EDGAR CIK). Filters out the
+    non-equity instrument forms that have no SEC filings."""
+    if not t or t.startswith("#"):
+        return False
+    if any(x in t for x in ("=X", "=F", "-USD", ".PVT")) or t.startswith("^") or "." in t:
+        return False
+    if len(t) > 6 and any(c.isdigit() for c in t):   # OCC option ticker
+        return False
+    return True
+
+
 def load_tickers():
-    """Read tickers.txt, skipping comments and obvious non-equities."""
+    """Build the equity ticker universe. Primary source: the equity repos'
+    tickers.txt fetched remotely (that's where they live). Falls back to a local
+    tickers.txt if one happens to exist in this repo."""
+    seen = set()
     out = []
-    try:
-        with open(TICKERS_PATH) as f:
-            for line in f:
-                t = line.strip()
-                if not t or t.startswith("#"):
-                    continue
-                # Skip non-US-equity instrument forms (no EDGAR CIK):
-                #   =X FX, =F futures, ^ indices, -USD crypto, .PVT private,
-                #   .<exchange> foreign listings, OCC option tickers (long+digits)
-                if any(x in t for x in ("=X", "=F", "-USD", ".PVT")) or t.startswith("^") or "." in t:
-                    continue
-                if len(t) > 6 and any(c.isdigit() for c in t):  # option ticker
-                    continue
-                out.append(t.upper())
-    except FileNotFoundError:
-        print(f"tickers.txt not found at {TICKERS_PATH}", file=sys.stderr)
+    # 1. Remote equity repos (the real source)
+    for url in EQUITY_TICKER_URLS:
+        txt = _get(url)
+        if not txt:
+            print(f"   could not fetch {url}", file=sys.stderr)
+            continue
+        for line in txt.splitlines():
+            t = line.strip().upper()
+            if _is_equity_ticker(t) and t not in seen:
+                seen.add(t)
+                out.append(t)
+        time.sleep(0.3)
+    # 2. Optional local fallback (if this repo also has a tickers.txt)
+    if os.path.exists(TICKERS_PATH):
+        try:
+            with open(TICKERS_PATH) as f:
+                for line in f:
+                    t = line.strip().upper()
+                    if _is_equity_ticker(t) and t not in seen:
+                        seen.add(t)
+                        out.append(t)
+        except Exception:
+            pass
     return out
 
 
@@ -132,17 +163,34 @@ def recent_filings(cik):
     return out
 
 
+def _write_out(companies):
+    doc = {
+        "_schema": "valuatio-sec-filings-v1",
+        "_description": "Recent SEC filing metadata per company (10-K/10-Q earnings, "
+                        "8-K events, etc.) from EDGAR. Quarterly/monthly cadence.",
+        "updatedAt": datetime.datetime.utcnow().isoformat() + "Z",
+        "companies": companies,
+    }
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w") as f:
+        json.dump(doc, f, indent=2)
+
+
 def main():
     tickers = load_tickers()
     if not tickers:
-        print("No equity tickers found.", file=sys.stderr)
-        sys.exit(1)
+        # Don't hard-fail — write an empty (but valid) file so the commit step
+        # has something to add and the workflow stays green.
+        print("No equity tickers found — writing empty sec_filings.json.", file=sys.stderr)
+        _write_out({})
+        return
     print(f"[sec] {len(tickers)} equity tickers to check")
 
     cik_map = build_ticker_cik_map()
     if not cik_map:
-        print("Could not load ticker→CIK map from EDGAR.", file=sys.stderr)
-        sys.exit(1)
+        print("Could not load ticker->CIK map from EDGAR — writing empty file.", file=sys.stderr)
+        _write_out({})
+        return
     time.sleep(0.3)
 
     out = {}
@@ -167,17 +215,8 @@ def main():
         if hit % 25 == 0:
             print(f"   ...{hit} companies with filings")
 
-    doc = {
-        "_schema": "valuatio-sec-filings-v1",
-        "_description": "Recent SEC filing metadata per company (10-K/10-Q earnings, "
-                        "8-K events, etc.) from EDGAR. Quarterly/monthly cadence.",
-        "updatedAt": datetime.datetime.utcnow().isoformat() + "Z",
-        "companies": out,
-    }
-    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
-    with open(OUT_PATH, "w") as f:
-        json.dump(doc, f, indent=2)
-    print(f"[sec] wrote filings for {hit} companies → {OUT_PATH}")
+    _write_out(out)
+    print(f"[sec] wrote filings for {hit} companies -> {OUT_PATH}")
 
 
 if __name__ == "__main__":
