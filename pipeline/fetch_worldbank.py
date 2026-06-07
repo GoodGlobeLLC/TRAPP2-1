@@ -1,177 +1,118 @@
 #!/usr/bin/env python3
 """
-TRAPP2-1 — World Bank countries and development indicators fetcher.
+fetch_worldbank.py — Pull annual GDP + trade-composition indicators from the
+World Bank API (free, no key) and write data/worldbank_countries.json.
 
-Fetches World Bank data via their public API (no key required):
-- Countries list: https://api.worldbank.org/v2/country
-- Development indicators: https://api.worldbank.org/v2/country/{country_code}/indicator/{indicator_code}
+Indicators:
+  NY.GDP.MKTP.CD     GDP, current US$
+  NE.EXP.GNFS.ZS     Exports of goods & services, % of GDP
+  NE.IMP.GNFS.ZS     Imports of goods & services, % of GDP
+  NE.TRD.GNFS.ZS     Trade (exports+imports), % of GDP  (openness)
+  NY.GDP.MKTP.KD.ZG  GDP growth, annual %
 
-Writes consolidated data/worldbank_countried.json with countries and key indicators.
+Covers the major economies that map to the country ETFs in the Global Trade
+tab (China→MCHI, Germany→EWG, etc.). Annual cadence — World Bank data is
+typically 6-18 months lagged.
 
-Output format:
-{
-  "fetched_at": "2026-05-28T14:30:00",
-  "countries": [
-    {"code": "US", "name": "United States", "region": "North America", "incomeLevel": "High income"},
-    ...
-  ],
-  "indicators": {
-    "NY.GDP.MKTP.CD": {"name": "GDP (current US$)", "description": "..."},
-    ...
-  },
-  "latest_data": {
-    "US": {"NY.GDP.MKTP.CD": {"value": 27360..., "date": "2023"}},
-    ...
-  }
-}
+Output resolves to <repo-root>/data/worldbank_countries.json.
+Requires: stdlib only.
 """
 import json
+import os
 import sys
-import time
+import datetime
 import urllib.request
-import urllib.parse
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from lib import DATA, log, write_json, utc_now_iso
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+OUT_PATH = os.path.join(REPO_ROOT, "data", "worldbank_countries.json")
+
+# ISO3 -> {name, etf}  — the economies shown in the Global Trade tab.
+COUNTRIES = {
+    "USA": {"name": "United States", "etf": "SPY"},
+    "CHN": {"name": "China", "etf": "MCHI"},
+    "JPN": {"name": "Japan", "etf": "EWJ"},
+    "DEU": {"name": "Germany", "etf": "EWG"},
+    "IND": {"name": "India", "etf": "INDA"},
+    "GBR": {"name": "United Kingdom", "etf": "EWU"},
+    "FRA": {"name": "France", "etf": "EWQ"},
+    "ITA": {"name": "Italy", "etf": "EWI"},
+    "BRA": {"name": "Brazil", "etf": "EWZ"},
+    "CAN": {"name": "Canada", "etf": "EWC"},
+    "KOR": {"name": "South Korea", "etf": "EWY"},
+    "MEX": {"name": "Mexico", "etf": "EWW"},
+    "AUS": {"name": "Australia", "etf": "EWA"},
+    "ESP": {"name": "Spain", "etf": "EWP"},
+    "IDN": {"name": "Indonesia", "etf": "EIDO"},
+    "SAU": {"name": "Saudi Arabia", "etf": "KSA"},
+    "TWN": {"name": "Taiwan", "etf": "EWT"},
+    "CHE": {"name": "Switzerland", "etf": "EWL"},
+}
+
+INDICATORS = {
+    "NY.GDP.MKTP.CD":    "gdpUsd",
+    "NE.EXP.GNFS.ZS":    "exportsPctGdp",
+    "NE.IMP.GNFS.ZS":    "importsPctGdp",
+    "NE.TRD.GNFS.ZS":    "tradePctGdp",
+    "NY.GDP.MKTP.KD.ZG": "gdpGrowthPct",
+}
 
 
-# Key World Bank indicators for macro/economic analysis
-INDICATORS = [
-    "NY.GDP.MKTP.CD",      # GDP (current US$)
-    "NY.GDP.PCAP.CD",      # GDP per capita (current US$)
-    "FP.CPI.TOTL.ZG",      # Inflation, consumer prices (annual %)
-    "NY.GDP.DEFL.ZS",      # GDP deflator (annual %)
-    "SP.URB.TOTL.IN.ZS",   # Urban population (% of total)
-    "SP.POP.TOTL",         # Population, total
-    "NV.IND.TOTL.CD",      # Industry (ISIC A-F) value added (current US$)
-    "NV.AGR.TOTL.CD",      # Agriculture, forestry, and fishing (current US$)
-    "TX.VAL.TECH.CD",      # Exports of high-technology products (current US$)
-    "TM.VAL.TECH.CD",      # Imports of high-technology products (current US$)
-]
-
-# Major economies and trading partners to fetch detailed data for
-# Uses 3-letter World Bank country codes
-MAJOR_COUNTRIES = [
-    "USA", "GBR", "DEU", "FRA", "JPN", "CHN", "IND", "BRA", "CAN", "MEX",
-    "AUS", "KOR", "SGP", "NLD", "CHE", "SWE", "NOR", "DNK", "FIN", "ARE",
-    "SAU", "RUS", "ZAF", "NGA", "EGY", "TUR", "IDN", "THA", "MYS", "PHL",
-]
-
-
-def fetch_json(url, timeout=30):
-    """Fetch JSON from URL with error handling."""
+def fetch_indicator(iso3, indicator):
+    """Return the most recent non-null {year, value} for one indicator, or None.
+    World Bank returns newest-first when sorted by date desc (default is desc)."""
+    url = (f"https://api.worldbank.org/v2/country/{iso3}/indicator/{indicator}"
+           f"?format=json&per_page=10&mrv=10")
     try:
-        with urllib.request.urlopen(url, timeout=timeout) as r:
-            return json.loads(r.read().decode('utf-8'))
+        req = urllib.request.Request(url, headers={"User-Agent": "valuatio-worldbank"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read().decode("utf-8"))
     except Exception as e:
-        log(f"  ✗ Fetch error: {e}")
+        print(f"   ! {iso3}/{indicator}: {e}", file=sys.stderr)
         return None
-
-
-def fetch_countries():
-    """Fetch list of countries from World Bank."""
-    log("Fetching World Bank countries...")
-    url = "https://api.worldbank.org/v2/country?format=json&per_page=500"
-    data = fetch_json(url)
-    if not data or len(data) < 2:
-        return []
-    
-    countries = []
-    for item in data[1]:
-        countries.append({
-            "code": item.get("id"),
-            "name": item.get("name"),
-            "region": item.get("region", {}).get("value"),
-            "incomeLevel": item.get("incomeLevel", {}).get("value"),
-        })
-    log(f"  ✓ Fetched {len(countries)} countries")
-    return countries
-
-
-def fetch_indicator_metadata(indicator_code):
-    """Fetch metadata for a single indicator."""
-    url = f"https://api.worldbank.org/v2/indicator/{indicator_code}?format=json"
-    data = fetch_json(url)
-    if not data or len(data) < 2 or not data[1]:
+    # data is [metadata, [observations]]
+    if not isinstance(data, list) or len(data) < 2 or not data[1]:
         return None
-    
-    indicator = data[1][0]
-    return {
-        "code": indicator.get("id"),
-        "name": indicator.get("name"),
-        "description": indicator.get("description", ""),
-        "source": indicator.get("source", {}).get("value"),
-    }
-
-
-def fetch_latest_value(country_code, indicator_code):
-    """Fetch latest value for a country/indicator pair."""
-    url = f"https://api.worldbank.org/v2/country/{country_code}/indicator/{indicator_code}?format=json&per_page=100&date=2015:2026"
-    data = fetch_json(url)
-    
-    if not data or len(data) < 2 or not data[1]:
-        return None
-    
-    # Find first non-null value (newest first)
-    for entry in data[1]:
-        if entry.get("value") is not None:
-            return {
-                "value": float(entry.get("value")),
-                "date": entry.get("date"),
-            }
+    for obs in data[1]:   # newest-first
+        if obs.get("value") is not None:
+            return {"year": obs.get("date"), "value": obs["value"]}
     return None
 
 
 def main():
-    consolidated = {
-        "fetched_at": utc_now_iso(),
-        "countries": [],
-        "indicators": {},
-        "latest_data": {}
+    out_countries = {}
+    for iso3, meta in COUNTRIES.items():
+        row = {"name": meta["name"], "etf": meta["etf"], "iso3": iso3}
+        for indicator, key in INDICATORS.items():
+            res = fetch_indicator(iso3, indicator)
+            if res:
+                row[key] = res["value"]
+                row[key + "Year"] = res["year"]
+        out_countries[iso3] = row
+        gdp = row.get("gdpUsd")
+        print(f"   {meta['name']:16} GDP ${gdp/1e12:.2f}T" if gdp else f"   {meta['name']:16} (no GDP)")
+
+    # Rank by GDP for convenience
+    ranked = sorted(
+        [c for c in out_countries.values() if c.get("gdpUsd")],
+        key=lambda c: c["gdpUsd"], reverse=True
+    )
+    for i, c in enumerate(ranked):
+        out_countries[c["iso3"]]["gdpRank"] = i + 1
+
+    out = {
+        "_schema": "valuatio-worldbank-v1",
+        "_description": "Annual GDP + trade composition from the World Bank "
+                        "(free API, no key). Data is typically 6-18 months lagged.",
+        "updatedAt": datetime.datetime.utcnow().isoformat() + "Z",
+        "source": "World Bank (api.worldbank.org)",
+        "countries": out_countries,
     }
-
-    # Fetch countries
-    countries = fetch_countries()
-    if not countries:
-        log("Failed to fetch countries")
-        return 1
-    
-    consolidated["countries"] = countries
-
-    # Fetch indicator metadata
-    log(f"Fetching metadata for {len(INDICATORS)} indicators...")
-    for indicator_code in INDICATORS:
-        metadata = fetch_indicator_metadata(indicator_code)
-        if metadata:
-            consolidated["indicators"][indicator_code] = metadata
-            log(f"  ✓ {indicator_code}: {metadata['name']}")
-        time.sleep(0.1)
-
-    # Fetch latest data for each country/indicator
-    log(f"Fetching latest data for {len(MAJOR_COUNTRIES)} major countries × {len(INDICATORS)} indicators...")
-    call_count = 0
-    for country_code in MAJOR_COUNTRIES:
-        if country_code not in {c["code"] for c in countries}:
-            log(f"  ⚠ {country_code}: not found in countries list")
-            continue
-        consolidated["latest_data"][country_code] = {}
-        for indicator_code in INDICATORS:
-            value = fetch_latest_value(country_code, indicator_code)
-            if value:
-                consolidated["latest_data"][country_code][indicator_code] = value
-            call_count += 1
-            if call_count % 30 == 0:
-                log(f"  • {call_count} API calls...")
-                time.sleep(0.5)  # Rate limiting
-            else:
-                time.sleep(0.08)
-
-    output_file = DATA / "worldbank_countried.json"
-    write_json(output_file, consolidated, compact=False)
-    log(f"Wrote World Bank data → {output_file}")
-    return 0
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w") as f:
+        json.dump(out, f, indent=2)
+    print(f"Wrote {len(out_countries)} countries → {OUT_PATH}")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
