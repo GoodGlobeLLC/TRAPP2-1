@@ -33,7 +33,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 # SEC requires a real User-Agent identifying you. EDIT THIS to your info.
-EDGAR_UA = "collinmcgough@gmail.com"
+EDGAR_UA = "Collin McGough collinmcgough@gmail.com"
 
 # Institutions to track: { "Display Name": "10-digit zero-padded CIK" }
 # Find a CIK at https://www.sec.gov/cgi-bin/browse-edgar (search the manager).
