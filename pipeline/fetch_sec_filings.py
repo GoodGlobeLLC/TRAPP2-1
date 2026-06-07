@@ -30,7 +30,7 @@ import time
 import datetime
 import urllib.request
 
-EDGAR_UA = "collinmcgough@gmail.com"
+EDGAR_UA = "Collin McGough collinmcgough@gmail.com"
 
 # Forms worth surfacing. 10-K/10-Q = earnings (annual/quarterly), 8-K = material
 # events, others give a fuller picture. Keep the most recent N per company.
