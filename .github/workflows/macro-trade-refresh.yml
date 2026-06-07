@@ -1,0 +1,49 @@
+name: Macro Trade + World Bank Refresh
+
+# US trade balance (FRED) prints monthly with a ~45-day lag; World Bank GDP is
+# annual but cheap to re-pull. Running on the 3rd of each month catches the
+# monthly trade print and keeps the World Bank file current.
+on:
+  schedule:
+    - cron: "0 10 3 * *"   # 10:00 UTC on the 3rd of each month
+  workflow_dispatch: {}
+
+concurrency:
+  group: macro-trade-refresh
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch FRED US trade balance
+        env:
+          FED_API_KEY: ${{ secrets.FED_API_KEY }}
+        run: python pipeline/fetch_macro_trade.py
+
+      - name: Fetch World Bank country data
+        run: python pipeline/fetch_worldbank.py
+        continue-on-error: true
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/macro_trade.json data/worldbank_countries.json
+          if git diff --staged --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Macro trade + World Bank refresh $(date -u +%Y-%m-%d)"
+            git push
+          fi
