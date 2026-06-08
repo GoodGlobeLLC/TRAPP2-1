@@ -1,6 +1,6 @@
 {
   "ticker": "TSN",
-  "fetchedAt": "2026-06-01T12:41:31.820910Z",
+  "fetchedAt": "2026-06-08T11:22:05.755695Z",
   "people": [
     {
       "qid": "Q114819469",
@@ -248,9 +248,9 @@
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Governor%20Mike%20Beebe.jpg",
         "occupations": [
           "prosecutor",
-          "lawyer",
-          "jurist",
           "governor",
+          "jurist",
+          "lawyer",
           "politician"
         ],
         "education": [
@@ -283,17 +283,35 @@
       "career": {
         "qid": "Q115129580",
         "name": "John R. Tyson",
-        "dateOfBirth": null,
+        "dateOfBirth": "1990-03-09",
         "birthPlace": null,
         "image": null,
         "occupations": [
           "businessperson"
         ],
-        "education": [],
+        "education": [
+          "Stanford Graduate School of Business",
+          "Harvard University"
+        ],
         "employers": [
           {
             "company": "Tyson Foods",
             "start": "2019-01-01",
+            "end": "2022-01-01"
+          },
+          {
+            "company": "Tyson Foods",
+            "start": "2025-01-01",
+            "end": null
+          },
+          {
+            "company": "Tyson Foods",
+            "start": "2022-01-01",
+            "end": "2024-01-01"
+          },
+          {
+            "company": "J.P. Morgan & Co.",
+            "start": null,
             "end": null
           }
         ],
