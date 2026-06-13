@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# ============================================================
+#  >>> DESTINATION: TRAPP2-1 repo  →  pipeline/fetch_data.py  <<<
+#  GoodGlobeLLC/TRAPP2-1/pipeline/fetch_data.py
+#
+#  Replace the existing pipeline/fetch_data.py in the TRAPP2-1 repo with
+#  THIS file. (One file per repo — do not mix them up; each is labeled.)
+# ============================================================
 """
 TRAPP2 — Quote + fundamentals fetcher.
 
@@ -46,6 +53,13 @@ COLUMNS = [
     "ipodate", "isetf", "isfund", "isactive", "web_url", "image",
     "currency", "employees", "city", "state", "phone", "address",
     "dividend_yield", "fetched_at", "profile_fetched_at",
+    # Financial metrics for Research grading + bot engine (camelCase to match app).
+    # Most TRAPP2-1 vehicles (FX/crypto/ETF) won't have these, but foreign
+    # equities listed here will — and the app reads them for grading.
+    "returnOnEquity", "returnOnAssets", "grossMargin", "operatingMargin",
+    "profitMargin", "revenueGrowth", "earningsGrowth", "revenue", "ebitda",
+    "freeCashFlow", "netIncome", "stockBasedComp", "priceToBook", "evToEbitda",
+    "evToRevenue", "totalDebt", "totalEquity", "totalAssets", "cash",
     "asset_class",  # NEW — Equity / Future / FX / Crypto / Index / Mutual Fund / Private / Option
 ]
 
@@ -445,9 +459,62 @@ def fetch_quote(ticker, profile_cache):
         "phone": safe(info, "phone"),
         "address": safe(info, "address1") or safe(info, "address"),
         "dividend_yield": fmt_num(safe(info, "dividendYield")),
+        # --- Financial metrics for Research grading + the bot engine ---
+        "returnOnEquity": fmt_num(safe(info, "returnOnEquity")),
+        "returnOnAssets": fmt_num(safe(info, "returnOnAssets")),
+        "grossMargin": fmt_num(safe(info, "grossMargins")),
+        "operatingMargin": fmt_num(safe(info, "operatingMargins")),
+        "profitMargin": fmt_num(safe(info, "profitMargins")),
+        "revenueGrowth": fmt_num(safe(info, "revenueGrowth")),
+        "earningsGrowth": fmt_num(safe(info, "earningsGrowth")),
+        "revenue": fmt_num(safe(info, "totalRevenue")),
+        "ebitda": fmt_num(safe(info, "ebitda")),
+        "freeCashFlow": fmt_num(safe(info, "freeCashflow")),
+        "netIncome": fmt_num(safe(info, "netIncomeToCommon")),
+        "stockBasedComp": fmt_num(safe(info, "stockBasedCompensation")),
+        "priceToBook": fmt_num(safe(info, "priceToBook")),
+        "evToEbitda": fmt_num(safe(info, "enterpriseToEbitda")),
+        "evToRevenue": fmt_num(safe(info, "enterpriseToRevenue")),
+        "totalDebt": fmt_num(safe(info, "totalDebt")),
+        "totalEquity": fmt_num(safe(info, "totalStockholderEquity")),
+        "totalAssets": fmt_num(safe(info, "totalAssets")),
+        "cash": fmt_num(safe(info, "totalCash")),
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "profile_fetched_at": profile_fetched_at,
     }
+
+    # ---- Balance-sheet / cashflow fallback ----
+    # Foreign equities here often return EMPTY balance-sheet fields from
+    # yfinance .info. Pull from the financial STATEMENTS so equity/assets/debt/
+    # SBC populate. Best-effort: fills only gaps, never overwrites, never fails.
+    try:
+        _need_bs = (not row.get("totalEquity")) or (not row.get("totalAssets")) or (not row.get("totalDebt"))
+        if _need_bs:
+            _bs = t.balance_sheet
+            if _bs is not None and not _bs.empty:
+                _col = _bs.columns[0]
+                def _bsval(*names):
+                    for n in names:
+                        if n in _bs.index:
+                            v = _bs.loc[n, _col]
+                            if v == v and v is not None:
+                                return float(v)
+                    return None
+                if not row.get("totalEquity"):
+                    row["totalEquity"] = fmt_num(_bsval(
+                        "Stockholders Equity", "Total Equity Gross Minority Interest", "Common Stock Equity"))
+                if not row.get("totalAssets"):
+                    row["totalAssets"] = fmt_num(_bsval("Total Assets"))
+                if not row.get("totalDebt"):
+                    row["totalDebt"] = fmt_num(_bsval("Total Debt", "Long Term Debt"))
+        if not row.get("stockBasedComp"):
+            _cf = t.cashflow
+            if _cf is not None and not _cf.empty and "Stock Based Compensation" in _cf.index:
+                v = _cf.loc["Stock Based Compensation", _cf.columns[0]]
+                if v == v and v is not None:
+                    row["stockBasedComp"] = fmt_num(float(v))
+    except Exception as _e:
+        pass
 
     # Inject classifier-derived sector/industry/asset_class for non-equity
     # instruments (futures, FX, crypto, indices, mutual funds, private, options).
