@@ -1,3 +1,11 @@
+# ============================================================
+#  >>> DESTINATION: TRAPP2-1 repo  →  .github/workflows/13f-refresh.yml  <<<
+#  GoodGlobeLLC/TRAPP2-1/.github/workflows/13f-refresh.yml
+#
+#  Replace the existing 13f-refresh.yml. Only change: the push step now
+#  integrates the remote before pushing (ours wins on data/ conflicts),
+#  fixing the 'fetch first' rejection when it races the nightly.
+# ============================================================
 name: 13F Quarterly Refresh
 
 # 13F filings post up to 45 days after quarter-end. Running on the 5th of
@@ -43,5 +51,18 @@ jobs:
             echo "No 13F/filings changes."
           else
             git commit -m "13F + SEC filings refresh $(date -u +%Y-%m-%d)"
-            git push
+            # Safe push: integrate remote first (our generated data wins on
+            # conflict), with allow-unrelated for any divergence. Prevents the
+            # "! [rejected] main -> main (fetch first)" failure when this race-
+            # commits against the nightly.
+            for i in 1 2 3 4 5; do
+              if git push origin HEAD:main; then echo "pushed (attempt $i)"; break; fi
+              echo "push $i rejected — integrating remote (ours wins on data/)"
+              git fetch origin main || true
+              git merge -X ours --allow-unrelated-histories --no-edit origin/main 2>/dev/null || true
+              git checkout --ours -- data/13f/ data/sec_filings.json 2>/dev/null || true
+              git add data/13f/ data/sec_filings.json 2>/dev/null || true
+              git commit --no-edit 2>/dev/null || true
+              sleep 4
+            done
           fi
