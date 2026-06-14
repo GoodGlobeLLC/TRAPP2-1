@@ -1,3 +1,12 @@
+# ============================================================
+#  >>> DESTINATION: TRAPP2-1 repo  →  .github/workflows/nightly.yml  <<<
+#  GoodGlobeLLC/TRAPP2-1/.github/workflows/nightly.yml
+#
+#  Replace the existing nightly.yml in TRAPP2-1 with THIS file. The only
+#  change vs your current one is a new step that runs
+#  pipeline/fetch_global_trade.py (which you also need to add to that repo).
+#  No new secrets needed — the script uses keyless public APIs.
+# ============================================================
 name: Nightly Full Refresh
 
 # Pushed 4 hours earlier from 04:30 UTC to 00:30 UTC to compensate for
@@ -54,6 +63,12 @@ jobs:
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python pipeline/fetch_macro.py
+
+      - name: Fetch fresh global-trade GDP (IMF + World Bank)
+        # Keyless public APIs. Best-effort: a source outage must not fail the
+        # nightly. Writes data/global_trade.json (the Global Trade tab reads it
+        # and overrides the baked-in 2024 GDP with fresher IMF estimates).
+        run: python pipeline/fetch_global_trade.py || echo "global-trade step had errors but continuing"
 
       - name: Compute signals
         run: python pipeline/compute_signals.py
