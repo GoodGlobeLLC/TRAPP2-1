@@ -1,14 +1,20 @@
 name: Mid-Day Refresh (Macro + Regime)
 
-# Runs mid-day every weekday. Pushed 1.5 hours earlier vs the previous schedule
-# (18:00 UTC → 16:30 UTC) to compensate for GitHub Actions queue latency.
-# Target: roughly 11 AM ET (EDT) when the cron is dispatched promptly. With
-# typical queue lag the run lands closer to 12:30-1 PM ET, which is what we want.
-#
-# EDT 11:00 AM = 15:00 UTC, EST 11:00 AM = 16:00 UTC.
-# Use 15:30 UTC as compromise — slightly early in winter, slightly early in summer.
+# Runs mid-day every weekday. Target ~11 AM ET; with GitHub Actions queue lag
+# the run lands closer to midday ET.
 #
 # Skips fetch_history.py (that's nightly only). Re-runs macro + signal stack.
+#
+# FIXED (three bugs that made this fail):
+#  1. The FRED macro step passed FRED_API_KEY, but fetch_macro.py reads
+#     FED_API_KEY and sys.exit(1)s when the key is empty — so the macro fetch
+#     died and took the workflow with it. Now passes BOTH key names.
+#  2. fetch_worldbank.py had no continue-on-error, so a transient World Bank
+#     API outage failed the whole run. It's now best-effort.
+#  3. Installing the full requirements.txt pulled etf-scraper (a brittle
+#     third-party lib) even though midday never fetches ETF holdings — an
+#     etf-scraper install break would fail midday for no reason. Midday now
+#     installs only what its steps actually use.
 
 on:
   schedule:
@@ -35,16 +41,18 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
-      - name: Install requirements
-        run: pip install -r requirements.txt
+      - name: Install requirements (only what midday uses — no etf-scraper)
+        run: pip install requests pandas fredapi "yfinance>=0.2.50,<0.3"
 
       - name: Fetch FRED macro series
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          FED_API_KEY: ${{ secrets.FED_API_KEY }}
         run: python pipeline/fetch_macro.py
 
-      - name: Fetch World Bank country data
+      - name: Fetch World Bank country data (best-effort)
         run: python pipeline/fetch_worldbank.py
+        continue-on-error: true
 
       - name: Compute signals
         run: python pipeline/compute_signals.py
@@ -60,8 +68,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A data/
-          echo "=== git status before commit ==="
-          git status --short
           echo "=== files staged ==="
           git diff --staged --name-only
           if git diff --staged --quiet; then
