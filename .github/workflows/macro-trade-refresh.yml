@@ -1,16 +1,15 @@
-# ============================================================
-#  >>> DESTINATION: TRAPP2-1 repo  →  .github/workflows/macro-trade-refresh.yml  <<<
-#  GoodGlobeLLC/TRAPP2-1/.github/workflows/macro-trade-refresh.yml
-#
-#  Replace the existing macro-trade-refresh.yml. Only change: the push step now
-#  integrates the remote before pushing (ours wins on data/ conflicts),
-#  fixing the 'fetch first' rejection when it races the nightly.
-# ============================================================
 name: Macro Trade + World Bank Refresh
 
 # US trade balance (FRED) prints monthly with a ~45-day lag; World Bank GDP is
 # annual but cheap to re-pull. Running on the 3rd of each month catches the
 # monthly trade print and keeps the World Bank file current.
+#
+# FIXED: this workflow previously called pipeline/fetch_macro_trade.py, which
+# does NOT exist — the trade-balance fetcher lives in pipeline/fetch_macro.py
+# (it writes data/macro_trade.json). Calling the missing script failed every
+# run. It now calls fetch_macro.py and passes BOTH FRED key names so it works
+# whether the repo secret is named FED_API_KEY or FRED_API_KEY.
+
 on:
   schedule:
     - cron: "0 10 3 * *"   # 10:00 UTC on the 3rd of each month
@@ -26,6 +25,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,11 +34,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: 'pip'
 
-      - name: Fetch FRED US trade balance
+      - name: Install requirements
+        run: pip install requests pandas fredapi
+
+      - name: Fetch FRED US trade balance (writes data/macro_trade.json)
         env:
           FED_API_KEY: ${{ secrets.FED_API_KEY }}
-        run: python pipeline/fetch_macro_trade.py
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python pipeline/fetch_macro.py
 
       - name: Fetch World Bank country data
         run: python pipeline/fetch_worldbank.py
@@ -48,23 +53,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/macro_trade.json data/worldbank_countries.json
+          # Only add files that exist (worldbank step may have been skipped).
+          git add data/macro_trade.json 2>/dev/null || true
+          [ -f data/worldbank_countries.json ] && git add data/worldbank_countries.json || true
           if git diff --staged --quiet; then
             echo "No changes."
           else
             git commit -m "Macro trade + World Bank refresh $(date -u +%Y-%m-%d)"
-            # Safe push: integrate remote first (our generated data wins on
-            # conflict), with allow-unrelated for any divergence. Prevents the
-            # "! [rejected] main -> main (fetch first)" failure when this race-
-            # commits against the nightly.
-            for i in 1 2 3 4 5; do
-              if git push origin HEAD:main; then echo "pushed (attempt $i)"; break; fi
-              echo "push $i rejected — integrating remote (ours wins on data/)"
-              git fetch origin main || true
-              git merge -X ours --allow-unrelated-histories --no-edit origin/main 2>/dev/null || true
-              git checkout --ours -- data/macro_trade.json data/worldbank_countries.json 2>/dev/null || true
-              git add data/macro_trade.json data/worldbank_countries.json 2>/dev/null || true
-              git commit --no-edit 2>/dev/null || true
+            for i in 1 2 3; do
+              if git push; then echo "Pushed on attempt $i"; break; fi
+              git pull --rebase --autostash origin main || git pull --rebase --autostash origin master || true
               sleep 4
             done
           fi
