@@ -1,27 +1,22 @@
-# ============================================================
-#  >>> DESTINATION: TRAPP2-1 repo  →  .github/workflows/nightly.yml  <<<
-#  GoodGlobeLLC/TRAPP2-1/.github/workflows/nightly.yml
-#
-#  Replace the existing nightly.yml in TRAPP2-1 with THIS file. The only
-#  change vs your current one is a new step that runs
-#  pipeline/fetch_global_trade.py (which you also need to add to that repo).
-#  No new secrets needed — the script uses keyless public APIs.
-# ============================================================
 name: Nightly Full Refresh
 
-# Pushed 4 hours earlier from 04:30 UTC to 00:30 UTC to compensate for
-# GitHub Actions queue latency. With typical queue lag the actual run lands
-# in the 4-6 AM UTC window, which is still well after US market close.
+# Runs after US close. Fast pipeline:
+# quotes → 5-year history → FRED macro → global trade → signals → regime →
+# Markov → ETF holdings → commit
 #
-# 00:30 UTC = 8:30 PM ET (EDT) / 7:30 PM ET (EST). Runs after close, before
-# any pre-market data appears.
+# Slower steps live in separate workflows (company-facts, leadership-history).
 #
-# Fast pipeline (no company facts or leadership history):
-# quotes → 5-year history → FRED macro → regime → Markov → ETF holdings → commit
-#
-# Slower steps moved to separate workflows:
-# • company-facts.yml runs every 3 weeks (Sunday 02:00 UTC) — Wikidata board/exec fetch
-# • leadership-history.yml runs weekly (Monday 04:00 UTC) — career history/cross-ticker links
+# FIXED (two failure modes):
+#  1. The FRED macro step passed FRED_API_KEY, but fetch_macro.py reads
+#     FED_API_KEY and sys.exit(1)s on an empty key — so macro failed and, since
+#     the step had no guard, the whole nightly failed. Now passes BOTH names.
+#  2. requirements.txt pins etf-scraper, a brittle third-party lib. When its
+#     install breaks (transitive dep conflict, yanked version), `pip install -r
+#     requirements.txt` failed at the INSTALL step, before any data was fetched
+#     — killing the nightly entirely. We now install the core deps first
+#     (guaranteed), then attempt etf-scraper separately and non-fatally; if it
+#     can't install, the ETF-holdings step is simply skipped and everything else
+#     still runs.
 
 on:
   schedule:
@@ -50,8 +45,11 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
-      - name: Install requirements
-        run: pip install -r requirements.txt
+      - name: Install core requirements (must succeed)
+        run: pip install requests pandas fredapi "yfinance>=0.2.50,<0.3"
+
+      - name: Install etf-scraper (optional — non-fatal if it breaks)
+        run: pip install "etf-scraper>=0.1.1" || echo "etf-scraper unavailable; ETF holdings step will be skipped"
 
       - name: Fetch quotes + fundamentals
         run: python pipeline/fetch_data.py
@@ -62,12 +60,10 @@ jobs:
       - name: Fetch FRED macro series
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          FED_API_KEY: ${{ secrets.FED_API_KEY }}
         run: python pipeline/fetch_macro.py
 
       - name: Fetch fresh global-trade GDP (IMF + World Bank)
-        # Keyless public APIs. Best-effort: a source outage must not fail the
-        # nightly. Writes data/global_trade.json (the Global Trade tab reads it
-        # and overrides the baked-in 2024 GDP with fresher IMF estimates).
         run: python pipeline/fetch_global_trade.py || echo "global-trade step had errors but continuing"
 
       - name: Compute signals
@@ -79,36 +75,20 @@ jobs:
       - name: Compute Markov transitions
         run: python pipeline/compute_transitions.py
 
-      - name: Fetch ETF holdings (issuer-direct CSV downloads)
-        # Best-effort: never fail the workflow if an issuer changes their URL.
-        # Each ETF is fetched independently; partial success commits what worked.
+      - name: Fetch ETF holdings (best-effort — skipped if etf-scraper missing)
         run: python pipeline/fetch_etf_holdings.py || echo "ETF holdings step had errors but continuing"
 
       - name: Commit & push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          # Stage all generated data files
           git add -A data/
-
-          echo "=== git status before commit ==="
-          git status --short
-
           echo "=== files staged ==="
           git diff --staged --name-only
-
-          # Exit cleanly if nothing changed
           if git diff --staged --quiet; then
             echo "No nightly changes to commit"
             exit 0
           fi
-
-          # Create commit
           git commit -m "Nightly refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-
-          # Fetch latest remote state
           git fetch origin main
-
-          # Push generated artifacts safely without rebasing
           git push --force-with-lease origin HEAD:main
