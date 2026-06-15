@@ -28,7 +28,7 @@ import datetime
 import urllib.request
 import urllib.parse
 
-FRED_KEY = os.environ.get("FED_API_KEY")
+FRED_KEY = os.environ.get("FED_API_KEY") or os.environ.get("FRED_API_KEY")
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 OUT_PATH = os.path.join(REPO_ROOT, "data", "macro_trade.json")
