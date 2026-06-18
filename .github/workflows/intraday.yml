@@ -1,3 +1,17 @@
+# ============================================================
+#  >>> DESTINATION: GoodGlobeLLC/TRAPP2-1
+#  >>> FILE PATH:   .github/workflows/intraday.yml
+#  >>> FULL PATH:   GoodGlobeLLC/TRAPP2-1/.github/workflows/intraday.yml
+#
+#  Edit/paste directly on GitHub here:
+#  https://github.com/GoodGlobeLLC/TRAPP2-1/edit/main/.github/workflows/intraday.yml
+#
+#  WHAT CHANGED IN THIS FILE:
+#    Push logic changed from `git pull --rebase` (which crashed with
+#    'unmerged files' on regenerated JSON) to `git fetch` + `git merge -X
+#    ours` (latest run wins, never conflicts).
+# ============================================================
+
 name: Live Quotes (Intraday)
 
 # Strategy: GitHub Actions schedules are queued, not fired-at-time. Observed
@@ -61,9 +75,17 @@ jobs:
             echo "No quote changes to commit"
           else
             git commit -m "Live quotes $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            for i in 1 2 3; do
-              if git push; then break; fi
-              git pull --rebase --autostash origin main || git pull --rebase --autostash origin master
-              sleep 4
+            # Conflict-proof push: quotes are machine-generated (whole files
+            # rewritten each run). If another workflow in this repo pushed first,
+            # a plain push is rejected; the OLD retry used `git pull --rebase`,
+            # which conflicts on two full-file rewrites of the same data file and
+            # can leave unmerged files. Instead: fetch + `merge -X ours`, which
+            # auto-resolves to THIS run's quotes and never leaves a conflict.
+            for i in 1 2 3 4 5; do
+              if git push origin HEAD:main; then echo "Pushed on attempt $i"; break; fi
+              echo "Push rejected — reconciling (ours wins) and retrying."
+              git fetch origin main
+              git merge -X ours --no-edit origin/main || git merge --abort 2>/dev/null || true
+              sleep $((i * 2))
             done
           fi
