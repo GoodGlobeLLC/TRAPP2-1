@@ -24,7 +24,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-1-nightly
+  group: trapp2-1-data-push
   cancel-in-progress: false
 
 jobs:
