@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "fetchedAt": "2026-06-15T23:55:38.046013Z",
+  "fetchedAt": "2026-06-18T03:20:32.383210Z",
   "people": [
     {
       "qid": "Q90959587",
@@ -14,14 +14,14 @@
         "birthPlace": "Marseille",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Stephane%20Bancel.png",
         "occupations": [
-          "chief executive officer",
-          "businessperson"
+          "businessperson",
+          "chief executive officer"
         ],
         "education": [
           "\u00c9cole Centrale Paris",
-          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve",
           "University of Minnesota",
-          "Harvard Business School"
+          "Harvard Business School",
+          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve"
         ],
         "employers": [
           {
@@ -77,9 +77,9 @@
         "birthPlace": "Beirut",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Noubar%20Afeyan%20at%20Global%20Innovation%20Forum%202022%2C%20Yerevan%2C%20Armenia%20by%20Xelgen.jpg",
         "occupations": [
-          "entrepreneur",
-          "businessperson",
           "donor",
+          "businessperson",
+          "entrepreneur",
           "inventor"
         ],
         "education": [
@@ -169,27 +169,27 @@
         "birthPlace": "Albany",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Langer.jpg",
         "occupations": [
-          "university teacher",
           "chemical engineer",
           "biochemist",
-          "biotechnologist",
+          "university teacher",
           "inventor",
-          "engineer"
+          "engineer",
+          "biotechnologist"
         ],
         "education": [
-          "The Milne School",
-          "Cornell University College of Engineering",
+          "Massachusetts Institute of Technology",
           "Cornell University",
-          "Massachusetts Institute of Technology"
+          "The Milne School",
+          "Cornell University College of Engineering"
         ],
         "employers": [
           {
-            "company": "Massachusetts Institute of Technology",
+            "company": "Harvard University",
             "start": null,
             "end": null
           },
           {
-            "company": "Harvard University",
+            "company": "Massachusetts Institute of Technology",
             "start": null,
             "end": null
           }
@@ -210,8 +210,8 @@
         "image": null,
         "occupations": [
           "physician",
-          "researcher",
-          "professor"
+          "professor",
+          "researcher"
         ],
         "education": [
           "Hebrew Reali School",
@@ -220,7 +220,7 @@
         ],
         "employers": [
           {
-            "company": "Moderna",
+            "company": "University of Pennsylvania",
             "start": null,
             "end": null
           },
@@ -235,7 +235,7 @@
             "end": null
           },
           {
-            "company": "University of Pennsylvania",
+            "company": "Moderna",
             "start": null,
             "end": null
           }
@@ -255,14 +255,14 @@
         "birthPlace": "Marseille",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Stephane%20Bancel.png",
         "occupations": [
-          "chief executive officer",
-          "businessperson"
+          "businessperson",
+          "chief executive officer"
         ],
         "education": [
           "\u00c9cole Centrale Paris",
-          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve",
           "University of Minnesota",
-          "Harvard Business School"
+          "Harvard Business School",
+          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve"
         ],
         "employers": [
           {
@@ -299,32 +299,17 @@
         "birthPlace": "Agadir",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Moncef%20Slaoui%20%28cropped%29.jpg",
         "occupations": [
-          "researcher",
-          "immunologist"
+          "immunologist",
+          "researcher"
         ],
         "education": [
+          "Universit\u00e9 libre de Bruxelles",
+          "Harvard Medical School",
           "Tufts University School of Medicine",
           "Mohammed V high school",
-          "International Institute for Management Development",
-          "Universit\u00e9 libre de Bruxelles",
-          "Harvard Medical School"
+          "International Institute for Management Development"
         ],
         "employers": [
-          {
-            "company": "Lonza Group",
-            "start": "2020-04-01",
-            "end": "2020-05-17"
-          },
-          {
-            "company": "GSK",
-            "start": "1988-01-01",
-            "end": "2017-01-01"
-          },
-          {
-            "company": "Qatar Foundation",
-            "start": "2009-01-01",
-            "end": "2020-01-01"
-          },
           {
             "company": "University of Mons",
             "start": null,
@@ -339,6 +324,21 @@
             "company": "International AIDS Vaccine Initiative",
             "start": "2015-01-01",
             "end": "2017-01-01"
+          },
+          {
+            "company": "Lonza Group",
+            "start": "2020-04-01",
+            "end": "2020-05-17"
+          },
+          {
+            "company": "GSK",
+            "start": "1988-01-01",
+            "end": "2017-01-01"
+          },
+          {
+            "company": "Qatar Foundation",
+            "start": "2009-01-01",
+            "end": "2020-01-01"
           },
           {
             "company": "Intellia Therapeutics",
