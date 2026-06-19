@@ -1,47 +1,47 @@
 {
   "_schema": "valuatio-signals-v1",
-  "updatedAt": "2026-06-18T18:16:37.167796Z",
+  "updatedAt": "2026-06-19T04:45:31.617663Z",
   "tickerCount": 22,
   "signals": {
     "macro": {
-      "raw": 0.1649709463064136,
+      "raw": 0.18999315654988233,
       "confidence": 1.0,
       "tier": "LIVE",
       "note": {
         "avg_1m_sector_return": 0.0047,
         "n_sectors": 11,
-        "indpro_yoy": 0.0135
+        "indpro_yoy": 0.0167
       }
     },
     "liquidity": {
-      "raw": 0.1136402852183452,
+      "raw": 0.11612691237053248,
       "confidence": 1.0,
       "tier": "LIVE",
       "note": {
-        "t10y2y": 0.38,
-        "hy_spread": 2.74,
-        "hy_spread_z": -1.06,
+        "t10y2y": 0.27,
+        "hy_spread": 2.63,
+        "hy_spread_z": -1.28,
         "hyg_minus_lqd_1m": -0.0079
       }
     },
     "volatility": {
-      "raw": -0.21250000000000002,
+      "raw": 0.4174566160520605,
       "confidence": 1.0,
       "tier": "LIVE",
       "note": {
-        "vix_level": 15.4,
-        "vix9d_over_vix": 1.1208
+        "vix_level": 18.44,
+        "vix9d_over_vix": 0.936
       }
     },
     "valuation": {
-      "raw": -0.34217668915823074,
+      "raw": -0.3184659119655513,
       "confidence": 0.85,
       "tier": "LIVE",
       "note": {
-        "spy_pe": 26.7,
-        "earnings_yield": 0.0375,
-        "real_10y": 0.0052,
-        "fed_model_spread": 0.0322
+        "spy_pe": 26.74,
+        "earnings_yield": 0.0374,
+        "real_10y": 0.0022,
+        "fed_model_spread": 0.0352
       }
     },
     "trend": {
