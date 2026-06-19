@@ -1,137 +1,112 @@
 #!/usr/bin/env python3
 """
-fetch_macro_trade.py — Pull US trade-balance series from FRED and write
-data/macro_trade.json. Monthly cadence.
+TRAPP2 — FRED macro series fetcher.
 
-Uses the FRED API key from the FED_API_KEY environment variable (wired into
-the TRAPP2-1 repo secrets). FRED series pulled:
-  BOPGSTB  — Trade Balance: Goods (Balance of Payments basis), monthly, $M
-  EXPGS    — Exports of Goods & Services, quarterly (BEA), $B
-  IMPGS    — Imports of Goods & Services, quarterly (BEA), $B
-  BOPGEXP  — Exports of Goods (BOP basis), monthly, $M
-  BOPGIMP  — Imports of Goods (BOP basis), monthly, $M
-  BOPTEXP  — Exports of Goods & Services (BOP basis), monthly, $M  (bonus)
-  BOPTIMP  — Imports of Goods & Services (BOP basis), monthly, $M  (bonus)
+Reads FRED_API_KEY from env. Writes data/macro/<series_id>.json for each series.
+Each file: {"series_id", "title", "frequency", "observations": [{"date", "value"}, ...]}
 
-The browser reads data/macro_trade.json and displays the latest print plus a
-short history sparkline in the Global Trade tab.
-
-If this should live inside an existing fetch_macro.py, paste the FRED_TRADE_SERIES
-dict and the fetch loop into that file's FRED section — output shape is the same.
-
-Requires: stdlib only.
+Add free API key from https://fred.stlouisfed.org/docs/api/api_key.html
+as a GitHub repo secret named FRED_API_KEY.
 """
 import json
 import os
 import sys
-import datetime
+import time
 import urllib.request
 import urllib.parse
+from pathlib import Path
 
-FRED_KEY = os.environ.get("FED_API_KEY") or os.environ.get("FRED_API_KEY")
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
-OUT_PATH = os.path.join(REPO_ROOT, "data", "macro_trade.json")
+sys.path.insert(0, str(Path(__file__).parent))
+from lib import MACRO, log, write_json, utc_now_iso
 
-# series_id -> (label, units, cadence)
-FRED_TRADE_SERIES = {
-    "BOPGSTB": ("Goods Trade Balance (BOP)", "USD millions", "monthly"),
-    "BOPGEXP": ("Goods Exports (BOP)", "USD millions", "monthly"),
-    "BOPGIMP": ("Goods Imports (BOP)", "USD millions", "monthly"),
-    "BOPTEXP": ("Goods & Services Exports (BOP)", "USD millions", "monthly"),
-    "BOPTIMP": ("Goods & Services Imports (BOP)", "USD millions", "monthly"),
-    "EXPGS":   ("Exports of Goods & Services (BEA)", "USD billions", "quarterly"),
-    "IMPGS":   ("Imports of Goods & Services (BEA)", "USD billions", "quarterly"),
-}
+# Series matter most for regime detection: growth + inflation + liquidity + curve + risk
+SERIES = [
+    ("GDP",          "Real GDP",                  "quarterly"),
+    ("INDPRO",       "Industrial Production",     "monthly"),
+    ("UNRATE",       "Unemployment Rate",         "monthly"),
+    ("PAYEMS",       "Nonfarm Payrolls",          "monthly"),
+    ("CPIAUCSL",     "CPI All Urban",             "monthly"),
+    ("PCEPI",        "PCE Price Index",           "monthly"),
+    ("DFF",          "Effective Fed Funds Rate",  "daily"),
+    ("M2SL",         "M2 Money Stock",            "monthly"),
+    # Full Treasury yield-curve tenors — so the frontend can build the complete
+    # curve straight from data/macro/ (reliable, no CORS/proxy needed).
+    ("DGS1MO",       "1-Month Treasury",          "daily"),
+    ("DGS2MO",       "2-Month Treasury",          "daily"),
+    ("DGS3MO",       "3-Month Treasury",          "daily"),
+    ("DGS6MO",       "6-Month Treasury",          "daily"),
+    ("DGS1",         "1-Year Treasury",           "daily"),
+    ("DGS2",         "2-Year Treasury",           "daily"),
+    ("DGS3",         "3-Year Treasury",           "daily"),
+    ("DGS5",         "5-Year Treasury",           "daily"),
+    ("DGS7",         "7-Year Treasury",           "daily"),
+    ("DGS10",        "10-Year Treasury",          "daily"),
+    ("DGS20",        "20-Year Treasury",          "daily"),
+    ("DGS30",        "30-Year Treasury",          "daily"),
+    ("T10Y2Y",       "10Y-2Y Spread",             "daily"),
+    ("T10Y3M",       "10Y-3M Spread",             "daily"),
+    ("BAMLH0A0HYM2", "High Yield OAS",            "daily"),
+    ("VIXCLS",       "VIX",                       "daily"),
+    ("DCOILWTICO",   "WTI Crude",                 "daily"),
+    ("DEXUSEU",      "USD/EUR",                   "daily"),
+]
 
-# How many recent observations to keep per series (for the sparkline).
-HISTORY_POINTS = 36
 
-
-def fetch_series(series_id):
-    """Return {'latest': {date,value}, 'history': [{date,value}...]} or None."""
-    if not FRED_KEY:
-        print("   ! FED_API_KEY not set", file=sys.stderr)
-        return None
-    params = urllib.parse.urlencode({
+def fetch_series(series_id, api_key, start="2000-01-01"):
+    params = {
         "series_id": series_id,
-        "api_key": FRED_KEY,
+        "api_key": api_key,
         "file_type": "json",
-        "sort_order": "desc",
-        "limit": HISTORY_POINTS,
-    })
-    url = f"https://api.stlouisfed.org/fred/series/observations?{params}"
+        "observation_start": start,
+    }
+    url = "https://api.stlouisfed.org/fred/series/observations?" + urllib.parse.urlencode(params)
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "valuatio-macro"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = json.loads(r.read().decode("utf-8"))
+        with urllib.request.urlopen(url, timeout=30) as r:
+            payload = json.loads(r.read())
     except Exception as e:
-        print(f"   ! {series_id}: {e}", file=sys.stderr)
+        log(f"  ✗ {series_id}: {e}")
         return None
-    obs = data.get("observations", [])
-    points = []
+    obs = payload.get("observations", [])
+    cleaned = []
     for o in obs:
+        d = o.get("date")
         v = o.get("value")
-        if v in (".", "", None):
+        if not d or v in (".", "", None):
             continue
         try:
-            points.append({"date": o["date"], "value": float(v)})
-        except ValueError:
+            cleaned.append({"date": d, "value": float(v)})
+        except (ValueError, TypeError):
             continue
-    if not points:
-        return None
-    # API returned newest-first; reverse to chronological for the sparkline.
-    points.reverse()
-    latest = points[-1]
-    prev = points[-2] if len(points) >= 2 else None
     return {
-        "latest": latest,
-        "prev": prev,
-        "history": points,
+        "series_id": series_id,
+        "fetched_at": utc_now_iso(),
+        "observations": cleaned,
     }
 
 
 def main():
-    if not FRED_KEY:
-        print("FED_API_KEY / FRED_API_KEY not set — cannot fetch FRED.", file=sys.stderr)
-        sys.exit(1)
+    api_key = os.environ.get("FRED_API_KEY", "").strip()
+    if not api_key:
+        log("FRED_API_KEY not set. Skipping macro fetch.")
+        log("Get a free key at https://fred.stlouisfed.org/docs/api/api_key.html")
+        return 0
 
-    series_out = {}
-    for sid, (label, units, cadence) in FRED_TRADE_SERIES.items():
-        res = fetch_series(sid)
-        if not res:
-            print(f"   skip {sid}", file=sys.stderr)
+    MACRO.mkdir(parents=True, exist_ok=True)
+    log(f"Fetching {len(SERIES)} FRED series → {MACRO}")
+    n_ok = 0
+    for sid, name, freq in SERIES:
+        data = fetch_series(sid, api_key)
+        if data is None:
             continue
-        latest = res["latest"]
-        prev = res["prev"]
-        change = None
-        if prev and prev["value"] != 0:
-            change = round((latest["value"] - prev["value"]) / abs(prev["value"]) * 100, 2)
-        series_out[sid] = {
-            "label": label,
-            "units": units,
-            "cadence": cadence,
-            "latest": latest,
-            "prevValue": prev["value"] if prev else None,
-            "changePct": change,
-            "history": res["history"],
-        }
-        print(f"   {sid}: {latest['date']} = {latest['value']:,.0f} {units}"
-              + (f" ({change:+.1f}% MoM)" if change is not None else ""))
-
-    out = {
-        "_schema": "valuatio-macro-trade-v1",
-        "_description": "US trade-balance series from FRED. Monthly cadence; "
-                        "US monthly trade prints ~45 days after the reference month.",
-        "updatedAt": datetime.datetime.utcnow().isoformat() + "Z",
-        "source": "FRED (api.stlouisfed.org)",
-        "series": series_out,
-    }
-    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
-    with open(OUT_PATH, "w") as f:
-        json.dump(out, f, indent=2)
-    print(f"Wrote {len(series_out)} FRED trade series → {OUT_PATH}")
+        data["title"] = name
+        data["frequency"] = freq
+        write_json(MACRO / f"{sid}.json", data, compact=True)
+        log(f"  ✓ {sid:14s} {len(data['observations']):>6d} obs · {name}")
+        n_ok += 1
+        time.sleep(0.15)
+    log(f"Wrote {n_ok}/{len(SERIES)} series.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
