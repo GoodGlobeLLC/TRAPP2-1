@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-06-20T15:12:17.394487Z",
+  "updatedAt": "2026-06-20T16:47:54.058125Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -36,8 +36,8 @@
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14775196,
-      "perUsd": 6.7681,
+      "usdPer": 0.14782622,
+      "perUsd": 6.7647,
       "pair": "USDCNY=X"
     },
     "HKD": {
