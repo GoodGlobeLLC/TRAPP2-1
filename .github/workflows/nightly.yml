@@ -1,22 +1,18 @@
+#  >>> DESTINATION: GoodGlobeLLC/TRAPP2  (.github/workflows/nightly.yml — REPLACE)
 name: Nightly Full Refresh
 
-# Runs after US close. Fast pipeline:
-# quotes → 5-year history → FRED macro → global trade → signals → regime →
-# Markov → ETF holdings → commit
+# TRAPP2 is the US-EQUITIES repo. This nightly does EQUITIES data only:
+#   quotes + fundamentals → 5-year price history.
 #
-# Slower steps live in separate workflows (company-facts, leadership-history).
+# The macro/FRED pull, signal stack, regime classification, Markov transitions,
+# and ETF holdings have been REMOVED from here — those belong to the FX/global
+# repo (TRAPP2-1), which already runs the full macro → signals → regime →
+# transitions chain in its own nightly. Keeping them here was redundant work and
+# caused two repos to publish competing regime_current.json snapshots (the
+# "regime flips between refreshes" race). The app reads macro + regime from
+# TRAPP2-1 now, so this repo no longer needs to produce them.
 #
-# FIXED (two failure modes):
-#  1. The FRED macro step passed FRED_API_KEY, but fetch_macro.py reads
-#     FED_API_KEY and sys.exit(1)s on an empty key — so macro failed and, since
-#     the step had no guard, the whole nightly failed. Now passes BOTH names.
-#  2. requirements.txt pins etf-scraper, a brittle third-party lib. When its
-#     install breaks (transitive dep conflict, yanked version), `pip install -r
-#     requirements.txt` failed at the INSTALL step, before any data was fetched
-#     — killing the nightly entirely. We now install the core deps first
-#     (guaranteed), then attempt etf-scraper separately and non-fatally; if it
-#     can't install, the ETF-holdings step is simply skipped and everything else
-#     still runs.
+# 00:30 UTC = 8:30 PM ET (EDT). Runs after US close, before pre-market data.
 
 on:
   schedule:
@@ -24,17 +20,15 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: trapp2-1-data-push
+  group: trapp2-equities-nightly
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
-
+    timeout-minutes: 60
     permissions:
       contents: write
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,10 +40,7 @@ jobs:
           cache: 'pip'
 
       - name: Install core requirements (must succeed)
-        run: pip install requests pandas fredapi "yfinance>=0.2.50,<0.3"
-
-      - name: Install etf-scraper (optional — non-fatal if it breaks)
-        run: pip install "etf-scraper>=0.1.1" || echo "etf-scraper unavailable; ETF holdings step will be skipped"
+        run: pip install requests pandas "yfinance>=0.2.50,<0.3"
 
       - name: Fetch quotes + fundamentals
         run: python pipeline/fetch_data.py
@@ -57,38 +48,39 @@ jobs:
       - name: Fetch 5-year price history
         run: python pipeline/fetch_history.py
 
-      - name: Fetch FRED macro series
-        env:
-          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-          FED_API_KEY: ${{ secrets.FED_API_KEY }}
-        run: python pipeline/fetch_macro.py
-
-      - name: Fetch fresh global-trade GDP (IMF + World Bank)
-        run: python pipeline/fetch_global_trade.py || echo "global-trade step had errors but continuing"
-
-      - name: Compute signals
-        run: python pipeline/compute_signals.py
-
-      - name: Classify regime + append snapshot
-        run: python pipeline/classify_regime.py
-
-      - name: Compute Markov transitions
-        run: python pipeline/compute_transitions.py
-
-      - name: Fetch ETF holdings (best-effort — skipped if etf-scraper missing)
-        run: python pipeline/fetch_etf_holdings.py || echo "ETF holdings step had errors but continuing"
+      # NOTE (removed — now in TRAPP2-1, the FX/global repo):
+      #   - Fetch FRED macro series      (pipeline/fetch_macro.py)
+      #   - Compute signals              (pipeline/compute_signals.py)
+      #   - Classify regime + snapshot   (pipeline/classify_regime.py)
+      #   - Compute Markov transitions   (pipeline/compute_transitions.py)
+      #   - Fetch ETF holdings           (pipeline/fetch_etf_holdings.py)
+      # Company facts + leadership run on their own clocks (company-facts.yml,
+      # leadership*.yml). This nightly is now purely equities market data.
 
       - name: Commit & push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A data/
-          echo "=== files staged ==="
-          git diff --staged --name-only
           if git diff --staged --quiet; then
             echo "No nightly changes to commit"
-            exit 0
+          else
+            git commit -m "Nightly equities refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            # Generated data — on conflict with a parallel run, OURS wins. Never
+            # hand-rebase JSON (git can't auto-merge it; that was the exit-128 cause).
+            for i in 1 2 3 4 5; do
+              if git push; then
+                echo "Push succeeded on attempt $i"
+                break
+              fi
+              echo "Push attempt $i failed — merging remote with OURS winning conflicts"
+              git fetch origin
+              git merge -X ours origin/main 2>/dev/null || git merge -X ours origin/master 2>/dev/null || true
+              if [ -d .git/rebase-merge ] || [ -f .git/MERGE_HEAD ]; then
+                git checkout --ours -- data/ 2>/dev/null || true
+                git add -A data/ 2>/dev/null || true
+                git commit --no-edit 2>/dev/null || true
+              fi
+              sleep 4
+            done
           fi
-          git commit -m "Nightly refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git fetch origin main
-          git push --force-with-lease origin HEAD:main
