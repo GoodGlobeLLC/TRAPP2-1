@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-06-28T16:55:20.774081Z",
+  "updatedAt": "2026-06-28T17:57:34.208872Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -36,8 +36,8 @@
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14728191,
-      "perUsd": 6.7897,
+      "usdPer": 0.14711291,
+      "perUsd": 6.7975,
       "pair": "USDCNY=X"
     },
     "HKD": {
@@ -46,8 +46,8 @@
       "pair": "USDHKD=X"
     },
     "TWD": {
-      "usdPer": 0.03140309,
-      "perUsd": 31.844,
+      "usdPer": 0.03138239,
+      "perUsd": 31.865,
       "pair": "USDTWD=X"
     },
     "INR": {
@@ -106,8 +106,8 @@
       "pair": "USDSAR=X"
     },
     "ILS": {
-      "usdPer": 0.33328889,
-      "perUsd": 3.0004,
+      "usdPer": 0.33350007,
+      "perUsd": 2.9985,
       "pair": "USDILS=X"
     },
     "THB": {
@@ -126,18 +126,18 @@
       "pair": "USDMYR=X"
     },
     "RUB": {
-      "usdPer": 0.01269035,
-      "perUsd": 78.800003,
+      "usdPer": 0.01270874,
+      "perUsd": 78.685997,
       "pair": "USDRUB=X"
     },
     "PLN": {
-      "usdPer": 0.26578073,
-      "perUsd": 3.7625,
+      "usdPer": 0.2657878,
+      "perUsd": 3.7624,
       "pair": "USDPLN=X"
     },
     "TRY": {
-      "usdPer": 0.02145251,
-      "perUsd": 46.614601,
+      "usdPer": 0.021466,
+      "perUsd": 46.5853,
       "pair": "USDTRY=X"
     }
   }
