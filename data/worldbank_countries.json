@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-06-26T17:17:56.969588Z",
+  "updatedAt": "2026-06-29T18:02:22.684735Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -44,8 +44,6 @@
       "gdpUsdYear": "2024",
       "exportsPctGdp": 22.7689998646748,
       "exportsPctGdpYear": "2024",
-      "importsPctGdp": 23.6379517504111,
-      "importsPctGdpYear": "2024",
       "tradePctGdp": 46.4069516150859,
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 0.104309021773304,
@@ -72,17 +70,12 @@
       "name": "India",
       "etf": "INDA",
       "iso3": "IND",
-      "gdpUsd": 3909891533858.08,
-      "gdpUsdYear": "2024",
       "exportsPctGdp": 21.1618460520863,
       "exportsPctGdpYear": "2024",
       "importsPctGdp": 23.4874474548813,
       "importsPctGdpYear": "2024",
       "tradePctGdp": 44.6492935069676,
-      "tradePctGdpYear": "2024",
-      "gdpGrowthPct": 6.49476552383821,
-      "gdpGrowthPctYear": "2024",
-      "gdpRank": 5
+      "tradePctGdpYear": "2024"
     },
     "GBR": {
       "name": "United Kingdom",
@@ -98,7 +91,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.1264226705118,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 6
+      "gdpRank": 5
     },
     "FRA": {
       "name": "France",
@@ -114,7 +107,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.19046798275883,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 7
+      "gdpRank": 6
     },
     "ITA": {
       "name": "Italy",
@@ -130,7 +123,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 0.692676948440536,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 8
+      "gdpRank": 7
     },
     "BRA": {
       "name": "Brazil",
@@ -146,7 +139,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 3.41931516597739,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 10
+      "gdpRank": 9
     },
     "CAN": {
       "name": "Canada",
@@ -162,7 +155,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.55479521049516,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 9
+      "gdpRank": 8
     },
     "KOR": {
       "name": "South Korea",
@@ -174,11 +167,9 @@
       "exportsPctGdpYear": "2024",
       "importsPctGdp": 40.2842567598803,
       "importsPctGdpYear": "2024",
-      "tradePctGdp": 84.6424951192038,
-      "tradePctGdpYear": "2024",
       "gdpGrowthPct": 2.00361101838986,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 11
+      "gdpRank": 10
     },
     "MEX": {
       "name": "Mexico",
@@ -194,7 +185,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.42742769080466,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 12
+      "gdpRank": 11
     },
     "AUS": {
       "name": "Australia",
@@ -208,9 +199,7 @@
       "importsPctGdpYear": "2024",
       "tradePctGdp": 47.1453811065195,
       "tradePctGdpYear": "2024",
-      "gdpGrowthPct": 1.37340773365975,
-      "gdpGrowthPctYear": "2024",
-      "gdpRank": 13
+      "gdpRank": 12
     },
     "ESP": {
       "name": "Spain",
@@ -226,7 +215,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 3.45525405630191,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 14
+      "gdpRank": 13
     },
     "IDN": {
       "name": "Indonesia",
@@ -242,7 +231,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 5.03034469419038,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 15
+      "gdpRank": 14
     },
     "SAU": {
       "name": "Saudi Arabia",
@@ -258,7 +247,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.99650173436159,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 16
+      "gdpRank": 15
     },
     "TWN": {
       "name": "Taiwan",
@@ -279,7 +268,7 @@
       "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.30233332541106,
       "gdpGrowthPctYear": "2024",
-      "gdpRank": 17
+      "gdpRank": 16
     }
   }
 }
