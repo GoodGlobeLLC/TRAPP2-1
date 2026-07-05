@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-07-05T19:57:09.119199Z",
+  "updatedAt": "2026-07-05T20:49:28.491247Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -16,18 +16,18 @@
       "pair": "GBPUSD=X"
     },
     "AUD": {
-      "usdPer": 0.69458914,
-      "perUsd": 1.4397,
+      "usdPer": 0.69386619,
+      "perUsd": 1.4412,
       "pair": "AUDUSD=X"
     },
     "NZD": {
-      "usdPer": 0.57126534,
-      "perUsd": 1.7505,
+      "usdPer": 0.57100439,
+      "perUsd": 1.7513,
       "pair": "NZDUSD=X"
     },
     "JPY": {
-      "usdPer": 0.00619851,
-      "perUsd": 161.328995,
+      "usdPer": 0.00620082,
+      "perUsd": 161.268997,
       "pair": "USDJPY=X"
     },
     "KRW": {
@@ -56,28 +56,28 @@
       "pair": "USDINR=X"
     },
     "CAD": {
-      "usdPer": 0.70417578,
-      "perUsd": 1.4201,
+      "usdPer": 0.70437415,
+      "perUsd": 1.4197,
       "pair": "USDCAD=X"
     },
     "CHF": {
-      "usdPer": 1.24581092,
-      "perUsd": 0.80269,
+      "usdPer": 1.24579547,
+      "perUsd": 0.8027,
       "pair": "USDCHF=X"
     },
     "SGD": {
-      "usdPer": 0.77441335,
-      "perUsd": 1.2913,
+      "usdPer": 0.77453333,
+      "perUsd": 1.2911,
       "pair": "USDSGD=X"
     },
     "SEK": {
-      "usdPer": 0.10373767,
-      "perUsd": 9.6397,
+      "usdPer": 0.10374305,
+      "perUsd": 9.6392,
       "pair": "USDSEK=X"
     },
     "NOK": {
-      "usdPer": 0.10186827,
-      "perUsd": 9.8166,
+      "usdPer": 0.10187241,
+      "perUsd": 9.8162,
       "pair": "USDNOK=X"
     },
     "DKK": {
@@ -131,13 +131,13 @@
       "pair": "USDRUB=X"
     },
     "PLN": {
-      "usdPer": 0.26688017,
-      "perUsd": 3.747,
+      "usdPer": 0.26683032,
+      "perUsd": 3.7477,
       "pair": "USDPLN=X"
     },
     "TRY": {
-      "usdPer": 0.02136917,
-      "perUsd": 46.796398,
+      "usdPer": 0.02138031,
+      "perUsd": 46.771999,
       "pair": "USDTRY=X"
     }
   }
