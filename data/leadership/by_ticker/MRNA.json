@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "fetchedAt": "2026-07-05T20:33:58.672761Z",
+  "fetchedAt": "2026-07-06T08:38:50.773520Z",
   "people": [
     {
       "qid": "Q90959587",
@@ -79,12 +79,12 @@
         "occupations": [
           "entrepreneur",
           "businessperson",
-          "donor",
-          "inventor"
+          "inventor",
+          "donor"
         ],
         "education": [
-          "McGill University",
-          "Massachusetts Institute of Technology"
+          "Massachusetts Institute of Technology",
+          "McGill University"
         ],
         "employers": [],
         "positions": []
@@ -124,8 +124,8 @@
         "birthPlace": null,
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Nabel%20in%20her%20lab%20at%20the%20NHLBI.jpg",
         "occupations": [
-          "scientist",
-          "cardiologist"
+          "cardiologist",
+          "scientist"
         ],
         "education": [
           "Weill Cornell Medicine",
@@ -169,18 +169,18 @@
         "birthPlace": "Albany",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Langer.jpg",
         "occupations": [
-          "biochemist",
-          "inventor",
-          "chemical engineer",
-          "biotechnologist",
           "university teacher",
-          "engineer"
+          "chemical engineer",
+          "biochemist",
+          "engineer",
+          "inventor",
+          "biotechnologist"
         ],
         "education": [
-          "Cornell University",
           "The Milne School",
           "Cornell University College of Engineering",
-          "Massachusetts Institute of Technology"
+          "Massachusetts Institute of Technology",
+          "Cornell University"
         ],
         "employers": [
           {
@@ -209,9 +209,9 @@
         "birthPlace": "Haifa",
         "image": null,
         "occupations": [
-          "researcher",
           "professor",
-          "physician"
+          "physician",
+          "researcher"
         ],
         "education": [
           "Hebrew Reali School",
@@ -225,17 +225,17 @@
             "end": null
           },
           {
+            "company": "University of Pennsylvania",
+            "start": null,
+            "end": null
+          },
+          {
             "company": "Sanofi",
             "start": null,
             "end": null
           },
           {
             "company": "GSK",
-            "start": null,
-            "end": null
-          },
-          {
-            "company": "University of Pennsylvania",
             "start": null,
             "end": null
           }
@@ -303,28 +303,13 @@
           "researcher"
         ],
         "education": [
+          "Universit\u00e9 libre de Bruxelles",
+          "Harvard Medical School",
           "Tufts University School of Medicine",
           "Mohammed V high school",
-          "International Institute for Management Development",
-          "Universit\u00e9 libre de Bruxelles",
-          "Harvard Medical School"
+          "International Institute for Management Development"
         ],
         "employers": [
-          {
-            "company": "University of Mons",
-            "start": null,
-            "end": null
-          },
-          {
-            "company": "Moderna",
-            "start": "2017-01-01",
-            "end": "2020-01-01"
-          },
-          {
-            "company": "International AIDS Vaccine Initiative",
-            "start": "2015-01-01",
-            "end": "2017-01-01"
-          },
           {
             "company": "Lonza Group",
             "start": "2020-04-01",
@@ -339,6 +324,21 @@
             "company": "Qatar Foundation",
             "start": "2009-01-01",
             "end": "2020-01-01"
+          },
+          {
+            "company": "University of Mons",
+            "start": null,
+            "end": null
+          },
+          {
+            "company": "Moderna",
+            "start": "2017-01-01",
+            "end": "2020-01-01"
+          },
+          {
+            "company": "International AIDS Vaccine Initiative",
+            "start": "2015-01-01",
+            "end": "2017-01-01"
           },
           {
             "company": "Intellia Therapeutics",
