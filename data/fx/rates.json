@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-07-11T11:41:17.976671Z",
+  "updatedAt": "2026-07-11T12:38:01.647211Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -31,13 +31,13 @@
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.00066724,
-      "perUsd": 1498.699951,
+      "usdPer": 0.00066717,
+      "perUsd": 1498.869995,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14764288,
-      "perUsd": 6.7731,
+      "usdPer": 0.14778253,
+      "perUsd": 6.7667,
       "pair": "USDCNY=X"
     },
     "HKD": {
@@ -71,8 +71,8 @@
       "pair": "USDSGD=X"
     },
     "SEK": {
-      "usdPer": 0.10362909,
-      "perUsd": 9.6498,
+      "usdPer": 0.10353124,
+      "perUsd": 9.65892,
       "pair": "USDSEK=X"
     },
     "NOK": {
@@ -116,13 +116,13 @@
       "pair": "USDTHB=X"
     },
     "IDR": {
-      "usdPer": 5.54e-05,
-      "perUsd": 18050.0,
+      "usdPer": 5.536e-05,
+      "perUsd": 18064.0,
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24576064,
-      "perUsd": 4.069,
+      "usdPer": 0.24588149,
+      "perUsd": 4.067,
       "pair": "USDMYR=X"
     },
     "RUB": {
