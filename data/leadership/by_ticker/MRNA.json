@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "fetchedAt": "2026-07-06T08:38:50.773520Z",
+  "fetchedAt": "2026-07-13T07:43:08.694825Z",
   "people": [
     {
       "qid": "Q90959587",
@@ -18,9 +18,9 @@
           "chief executive officer"
         ],
         "education": [
-          "\u00c9cole Centrale Paris",
           "University of Minnesota",
           "Harvard Business School",
+          "\u00c9cole Centrale Paris",
           "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve"
         ],
         "employers": [
@@ -77,14 +77,14 @@
         "birthPlace": "Beirut",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Noubar%20Afeyan%20at%20Global%20Innovation%20Forum%202022%2C%20Yerevan%2C%20Armenia%20by%20Xelgen.jpg",
         "occupations": [
-          "entrepreneur",
           "businessperson",
-          "inventor",
-          "donor"
+          "entrepreneur",
+          "donor",
+          "inventor"
         ],
         "education": [
-          "Massachusetts Institute of Technology",
-          "McGill University"
+          "McGill University",
+          "Massachusetts Institute of Technology"
         ],
         "employers": [],
         "positions": []
@@ -124,8 +124,8 @@
         "birthPlace": null,
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Nabel%20in%20her%20lab%20at%20the%20NHLBI.jpg",
         "occupations": [
-          "cardiologist",
-          "scientist"
+          "scientist",
+          "cardiologist"
         ],
         "education": [
           "Weill Cornell Medicine",
@@ -133,11 +133,6 @@
           "Harvard Medical School"
         ],
         "employers": [
-          {
-            "company": "University of Michigan",
-            "start": null,
-            "end": null
-          },
           {
             "company": "National Heart, Lung, and Blood Institute",
             "start": null,
@@ -150,6 +145,11 @@
           },
           {
             "company": "Brigham and Women's Hospital",
+            "start": null,
+            "end": null
+          },
+          {
+            "company": "University of Michigan",
             "start": null,
             "end": null
           }
@@ -169,12 +169,12 @@
         "birthPlace": "Albany",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Langer.jpg",
         "occupations": [
-          "university teacher",
           "chemical engineer",
           "biochemist",
+          "biotechnologist",
+          "university teacher",
           "engineer",
-          "inventor",
-          "biotechnologist"
+          "inventor"
         ],
         "education": [
           "The Milne School",
@@ -209,9 +209,9 @@
         "birthPlace": "Haifa",
         "image": null,
         "occupations": [
+          "researcher",
           "professor",
-          "physician",
-          "researcher"
+          "physician"
         ],
         "education": [
           "Hebrew Reali School",
@@ -225,17 +225,17 @@
             "end": null
           },
           {
-            "company": "University of Pennsylvania",
-            "start": null,
-            "end": null
-          },
-          {
             "company": "Sanofi",
             "start": null,
             "end": null
           },
           {
             "company": "GSK",
+            "start": null,
+            "end": null
+          },
+          {
+            "company": "University of Pennsylvania",
             "start": null,
             "end": null
           }
@@ -259,9 +259,9 @@
           "chief executive officer"
         ],
         "education": [
-          "\u00c9cole Centrale Paris",
           "University of Minnesota",
           "Harvard Business School",
+          "\u00c9cole Centrale Paris",
           "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve"
         ],
         "employers": [
@@ -299,8 +299,8 @@
         "birthPlace": "Agadir",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Moncef%20Slaoui%20%28cropped%29.jpg",
         "occupations": [
-          "immunologist",
-          "researcher"
+          "researcher",
+          "immunologist"
         ],
         "education": [
           "Universit\u00e9 libre de Bruxelles",
@@ -310,21 +310,6 @@
           "International Institute for Management Development"
         ],
         "employers": [
-          {
-            "company": "Lonza Group",
-            "start": "2020-04-01",
-            "end": "2020-05-17"
-          },
-          {
-            "company": "GSK",
-            "start": "1988-01-01",
-            "end": "2017-01-01"
-          },
-          {
-            "company": "Qatar Foundation",
-            "start": "2009-01-01",
-            "end": "2020-01-01"
-          },
           {
             "company": "University of Mons",
             "start": null,
@@ -339,6 +324,21 @@
             "company": "International AIDS Vaccine Initiative",
             "start": "2015-01-01",
             "end": "2017-01-01"
+          },
+          {
+            "company": "Lonza Group",
+            "start": "2020-04-01",
+            "end": "2020-05-17"
+          },
+          {
+            "company": "GSK",
+            "start": "1988-01-01",
+            "end": "2017-01-01"
+          },
+          {
+            "company": "Qatar Foundation",
+            "start": "2009-01-01",
+            "end": "2020-01-01"
           },
           {
             "company": "Intellia Therapeutics",
