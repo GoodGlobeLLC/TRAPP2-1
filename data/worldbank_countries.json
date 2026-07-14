@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-07-10T17:24:10.108592Z",
+  "updatedAt": "2026-07-14T16:48:39.428685Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -10,6 +10,8 @@
       "iso3": "USA",
       "gdpUsd": 30769700000000,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 10.97469647515,
+      "exportsPctGdpYear": "2024",
       "importsPctGdp": 14.0413208226783,
       "importsPctGdpYear": "2024",
       "tradePctGdp": 25.0160172978284,
@@ -44,6 +46,8 @@
       "exportsPctGdpYear": "2024",
       "importsPctGdp": 22.8730294879112,
       "importsPctGdpYear": "2024",
+      "tradePctGdp": 44.8529388577573,
+      "tradePctGdpYear": "2024",
       "gdpGrowthPct": 1.19311288444599,
       "gdpGrowthPctYear": "2025",
       "gdpRank": 4
@@ -106,8 +110,6 @@
       "exportsPctGdpYear": "2025",
       "importsPctGdp": 33.7995547693485,
       "importsPctGdpYear": "2025",
-      "tradePctGdp": 67.1923772838849,
-      "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.840949955479587,
       "gdpGrowthPctYear": "2025",
       "gdpRank": 7
@@ -154,6 +156,8 @@
       "exportsPctGdpYear": "2025",
       "importsPctGdp": 32.1781181545045,
       "importsPctGdpYear": "2025",
+      "tradePctGdp": 63.5105049692227,
+      "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.74268536175708,
       "gdpGrowthPctYear": "2025",
       "gdpRank": 9
@@ -164,6 +168,8 @@
       "iso3": "KOR",
       "gdpUsd": 1872374961553.15,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 45.7630385215931,
+      "exportsPctGdpYear": "2025",
       "importsPctGdp": 40.5985621226499,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 86.3616006442431,
@@ -194,6 +200,8 @@
       "iso3": "AUS",
       "gdpUsd": 1798518933689.21,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 23.2444383508997,
+      "exportsPctGdpYear": "2025",
       "importsPctGdp": 22.6570110371129,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 45.9014493880126,
