@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-07-23T17:03:23.087385Z",
+  "updatedAt": "2026-07-24T17:08:24.608439Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -62,8 +62,6 @@
       "exportsPctGdpYear": "2025",
       "importsPctGdp": 38.0780373654056,
       "importsPctGdpYear": "2025",
-      "tradePctGdp": 78.5128112199127,
-      "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.239578342117881,
       "gdpGrowthPctYear": "2025",
       "gdpRank": 3
@@ -72,8 +70,6 @@
       "name": "India",
       "etf": "INDA",
       "iso3": "IND",
-      "gdpUsd": 3956067115771.63,
-      "gdpUsdYear": "2025",
       "exportsPctGdp": 22.2630410669804,
       "exportsPctGdpYear": "2025",
       "importsPctGdp": 24.0051596190103,
@@ -81,8 +77,7 @@
       "tradePctGdp": 46.2682006859907,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 7.56666179284244,
-      "gdpGrowthPctYear": "2025",
-      "gdpRank": 6
+      "gdpGrowthPctYear": "2025"
     },
     "GBR": {
       "name": "United Kingdom",
@@ -114,7 +109,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.840949955479587,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 7
+      "gdpRank": 6
     },
     "ITA": {
       "name": "Italy",
@@ -130,7 +125,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.539583636778445,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 8
+      "gdpRank": 7
     },
     "BRA": {
       "name": "Brazil",
@@ -146,7 +141,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 2.2857464902475,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 10
+      "gdpRank": 9
     },
     "CAN": {
       "name": "Canada",
@@ -162,7 +157,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.74268536175708,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 9
+      "gdpRank": 8
     },
     "KOR": {
       "name": "South Korea",
@@ -178,7 +173,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.00701840291242,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 12
+      "gdpRank": 11
     },
     "MEX": {
       "name": "Mexico",
@@ -194,7 +189,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.561683456144578,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 13
+      "gdpRank": 12
     },
     "AUS": {
       "name": "Australia",
@@ -210,7 +205,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.35039785076631,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 14
+      "gdpRank": 13
     },
     "ESP": {
       "name": "Spain",
@@ -226,7 +221,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 2.82495400578509,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 11
+      "gdpRank": 10
     },
     "IDN": {
       "name": "Indonesia",
@@ -242,7 +237,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 5.10808904438025,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 15
+      "gdpRank": 14
     },
     "SAU": {
       "name": "Saudi Arabia",
@@ -258,7 +253,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 4.50246560191663,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 16
+      "gdpRank": 15
     },
     "TWN": {
       "name": "Taiwan",
@@ -279,7 +274,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.30007790958307,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 17
+      "gdpRank": 16
     }
   }
 }
