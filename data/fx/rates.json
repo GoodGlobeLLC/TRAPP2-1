@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-07-25T01:07:54.506051Z",
+  "updatedAt": "2026-07-25T04:24:04.023790Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -31,13 +31,13 @@
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.0006852,
-      "perUsd": 1459.420044,
+      "usdPer": 0.00068395,
+      "perUsd": 1462.099976,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14767995,
-      "perUsd": 6.7714,
+      "usdPer": 0.14767122,
+      "perUsd": 6.7718,
       "pair": "USDCNY=X"
     },
     "HKD": {
@@ -51,8 +51,8 @@
       "pair": "USDTWD=X"
     },
     "INR": {
-      "usdPer": 0.01035711,
-      "perUsd": 96.552002,
+      "usdPer": 0.01035626,
+      "perUsd": 96.559998,
       "pair": "USDINR=X"
     },
     "CAD": {
@@ -66,13 +66,13 @@
       "pair": "USDCHF=X"
     },
     "SGD": {
-      "usdPer": 0.77519382,
-      "perUsd": 1.29,
+      "usdPer": 0.77513372,
+      "perUsd": 1.2901,
       "pair": "USDSGD=X"
     },
     "SEK": {
-      "usdPer": 0.1029654,
-      "perUsd": 9.712,
+      "usdPer": 0.10296858,
+      "perUsd": 9.7117,
       "pair": "USDSEK=X"
     },
     "NOK": {
@@ -96,8 +96,8 @@
       "pair": "USDMXN=X"
     },
     "ZAR": {
-      "usdPer": 0.05945303,
-      "perUsd": 16.82,
+      "usdPer": 0.05943607,
+      "perUsd": 16.8248,
       "pair": "USDZAR=X"
     },
     "SAR": {
@@ -116,18 +116,18 @@
       "pair": "USDTHB=X"
     },
     "IDR": {
-      "usdPer": 5.565e-05,
-      "perUsd": 17968.0,
+      "usdPer": 5.576e-05,
+      "perUsd": 17935.0,
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24461841,
-      "perUsd": 4.088,
+      "usdPer": 0.24452867,
+      "perUsd": 4.0895,
       "pair": "USDMYR=X"
     },
     "RUB": {
-      "usdPer": 0.01287996,
-      "perUsd": 77.639999,
+      "usdPer": 0.01289075,
+      "perUsd": 77.574997,
       "pair": "USDRUB=X"
     },
     "PLN": {
