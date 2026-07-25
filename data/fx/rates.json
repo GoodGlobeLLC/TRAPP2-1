@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-07-25T04:24:04.023790Z",
+  "updatedAt": "2026-07-25T06:34:35.182634Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -21,8 +21,8 @@
       "pair": "AUDUSD=X"
     },
     "NZD": {
-      "usdPer": 0.57910585,
-      "perUsd": 1.7268,
+      "usdPer": 0.57890475,
+      "perUsd": 1.7274,
       "pair": "NZDUSD=X"
     },
     "JPY": {
