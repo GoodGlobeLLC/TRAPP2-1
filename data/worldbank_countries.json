@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-07-29T16:52:35.906118Z",
+  "updatedAt": "2026-07-30T17:06:00.112672Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -58,6 +58,8 @@
       "iso3": "DEU",
       "gdpUsd": 5050922925047.05,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 40.4347738545071,
+      "exportsPctGdpYear": "2025",
       "importsPctGdp": 38.0780373654056,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 78.5128112199127,
@@ -90,8 +92,6 @@
       "gdpUsdYear": "2025",
       "exportsPctGdp": 30.5969582161816,
       "exportsPctGdpYear": "2025",
-      "importsPctGdp": 31.8603712472379,
-      "importsPctGdpYear": "2025",
       "tradePctGdp": 62.4573294634195,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.38844207858726,
@@ -158,8 +158,6 @@
       "importsPctGdpYear": "2025",
       "tradePctGdp": 63.5105049692227,
       "tradePctGdpYear": "2025",
-      "gdpGrowthPct": 1.74268536175708,
-      "gdpGrowthPctYear": "2025",
       "gdpRank": 9
     },
     "KOR": {
@@ -216,6 +214,8 @@
       "iso3": "ESP",
       "gdpUsd": 1906453309985.88,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 36.6374813887545,
+      "exportsPctGdpYear": "2025",
       "importsPctGdp": 32.8133446186236,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 69.4508260073781,
