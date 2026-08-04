@@ -1,75 +1,75 @@
 {
   "_schema": "valuatio-crypto-prices-v1",
   "_description": "Crypto spot prices in USD, 24h market.",
-  "updatedAt": "2026-08-04T07:08:23.085674Z",
+  "updatedAt": "2026-08-04T09:47:58.838406Z",
   "quote": "USD",
   "source": "fetch_crypto.py (yfinance)",
   "prices": {
     "BTC-USD": {
-      "price": 63582.730469,
+      "price": 63492.46875,
       "change24hPct": 0.0,
-      "marketCap": 1276124463104,
-      "volume24h": 26551511040
+      "marketCap": 1274307805184,
+      "volume24h": 25479280640
     },
     "ETH-USD": {
-      "price": 1855.709961,
+      "price": 1853.76001,
       "change24hPct": 0.0,
-      "marketCap": 224008372224,
-      "volume24h": 8190938112
+      "marketCap": 223780995072,
+      "volume24h": 7718192128
     },
     "SOL-USD": {
-      "price": 73.370003,
+      "price": 73.160004,
       "change24hPct": 0.0,
-      "marketCap": 42630193152,
-      "volume24h": 1479940352
+      "marketCap": 42527412224,
+      "volume24h": 1486862720
     },
     "XRP-USD": {
-      "price": 1.073,
+      "price": 1.0721,
       "change24hPct": 0.0,
-      "marketCap": 67087069184,
-      "volume24h": 1042297280
+      "marketCap": 67073867776,
+      "volume24h": 1018096832
     },
     "BNB-USD": {
-      "price": 589.789978,
+      "price": 588.25,
       "change24hPct": 0.0,
-      "marketCap": 78571683840,
-      "volume24h": 1000118144
+      "marketCap": 78345871360,
+      "volume24h": 964568896
     },
     "ADA-USD": {
-      "price": 0.19503,
+      "price": 0.19573,
       "change24hPct": 0.0,
-      "marketCap": 7105922048,
-      "volume24h": 724319808
+      "marketCap": 7152629760,
+      "volume24h": 722316736
     },
     "DOGE-USD": {
-      "price": 0.07007,
+      "price": 0.07006,
       "change24hPct": 0.0,
-      "marketCap": 11992606720,
-      "volume24h": 444552992
+      "marketCap": 11994932224,
+      "volume24h": 425370272
     },
     "AVAX-USD": {
-      "price": 6.773,
+      "price": 6.783,
       "change24hPct": 0.0,
-      "marketCap": 2930918400,
-      "volume24h": 318716000
+      "marketCap": 2925420288,
+      "volume24h": 322612576
     },
     "DOT-USD": {
-      "price": 0.8318,
+      "price": 0.835,
       "change24hPct": 0.0,
-      "marketCap": 1411857792,
-      "volume24h": 99354296
+      "marketCap": 1417420672,
+      "volume24h": 101058544
     },
     "LINK-USD": {
-      "price": 8.146,
+      "price": 8.144,
       "change24hPct": 0.0,
-      "marketCap": 6090054144,
-      "volume24h": 199038784
+      "marketCap": 6088590336,
+      "volume24h": 199809600
     },
     "LTC-USD": {
-      "price": 44.25,
+      "price": 44.220001,
       "change24hPct": 0.0,
-      "marketCap": 3429300736,
-      "volume24h": 161124720
+      "marketCap": 3428887040,
+      "volume24h": 159528304
     }
   }
 }
