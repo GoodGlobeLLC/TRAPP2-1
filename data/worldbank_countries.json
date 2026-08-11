@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-08-10T16:25:48.881701Z",
+  "updatedAt": "2026-08-11T16:33:18.147881Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -122,6 +122,8 @@
       "iso3": "ITA",
       "gdpUsd": 2551556954100.35,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 32.2270197272539,
+      "exportsPctGdpYear": "2025",
       "importsPctGdp": 30.2962066318587,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 62.5232263591126,
@@ -182,17 +184,12 @@
       "name": "Mexico",
       "etf": "EWW",
       "iso3": "MEX",
-      "gdpUsd": 1832641364775.52,
-      "gdpUsdYear": "2025",
-      "exportsPctGdp": 39.6453397926899,
-      "exportsPctGdpYear": "2025",
       "importsPctGdp": 40.2786127888756,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 79.9239525815655,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.561683456144578,
-      "gdpGrowthPctYear": "2025",
-      "gdpRank": 13
+      "gdpGrowthPctYear": "2025"
     },
     "AUS": {
       "name": "Australia",
@@ -208,7 +205,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.35039785076631,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 14
+      "gdpRank": 13
     },
     "ESP": {
       "name": "Spain",
@@ -240,7 +237,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 5.10808904438025,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 15
+      "gdpRank": 14
     },
     "SAU": {
       "name": "Saudi Arabia",
@@ -256,7 +253,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 4.50246560191663,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 16
+      "gdpRank": 15
     },
     "TWN": {
       "name": "Taiwan",
@@ -277,7 +274,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.30007790958307,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 17
+      "gdpRank": 16
     }
   }
 }
