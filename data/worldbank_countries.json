@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-08-11T16:33:18.147881Z",
+  "updatedAt": "2026-08-12T16:44:48.452460Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -60,8 +60,6 @@
       "gdpUsdYear": "2025",
       "exportsPctGdp": 40.4347738545071,
       "exportsPctGdpYear": "2025",
-      "importsPctGdp": 38.0780373654056,
-      "importsPctGdpYear": "2025",
       "tradePctGdp": 78.5128112199127,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.239578342117881,
@@ -74,10 +72,6 @@
       "iso3": "IND",
       "gdpUsd": 3956067115771.63,
       "gdpUsdYear": "2025",
-      "exportsPctGdp": 22.2630410669804,
-      "exportsPctGdpYear": "2025",
-      "importsPctGdp": 24.0051596190103,
-      "importsPctGdpYear": "2025",
       "tradePctGdp": 46.2682006859907,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 7.56666179284244,
@@ -184,12 +178,17 @@
       "name": "Mexico",
       "etf": "EWW",
       "iso3": "MEX",
+      "gdpUsd": 1832641364775.52,
+      "gdpUsdYear": "2025",
+      "exportsPctGdp": 39.6453397926899,
+      "exportsPctGdpYear": "2025",
       "importsPctGdp": 40.2786127888756,
       "importsPctGdpYear": "2025",
       "tradePctGdp": 79.9239525815655,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.561683456144578,
-      "gdpGrowthPctYear": "2025"
+      "gdpGrowthPctYear": "2025",
+      "gdpRank": 13
     },
     "AUS": {
       "name": "Australia",
@@ -205,7 +204,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.35039785076631,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 13
+      "gdpRank": 14
     },
     "ESP": {
       "name": "Spain",
@@ -235,9 +234,7 @@
       "importsPctGdpYear": "2025",
       "tradePctGdp": 43.3912070511204,
       "tradePctGdpYear": "2025",
-      "gdpGrowthPct": 5.10808904438025,
-      "gdpGrowthPctYear": "2025",
-      "gdpRank": 14
+      "gdpRank": 15
     },
     "SAU": {
       "name": "Saudi Arabia",
@@ -253,7 +250,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 4.50246560191663,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 15
+      "gdpRank": 16
     },
     "TWN": {
       "name": "Taiwan",
@@ -274,7 +271,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.30007790958307,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 16
+      "gdpRank": 17
     }
   }
 }
