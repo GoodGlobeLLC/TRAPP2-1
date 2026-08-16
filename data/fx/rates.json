@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-08-16T18:44:13.838149Z",
+  "updatedAt": "2026-08-16T19:01:47.012582Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -41,8 +41,8 @@
       "pair": "USDCNY=X"
     },
     "HKD": {
-      "usdPer": 0.12743724,
-      "perUsd": 7.847,
+      "usdPer": 0.12745348,
+      "perUsd": 7.846,
       "pair": "USDHKD=X"
     },
     "TWD": {
@@ -66,8 +66,8 @@
       "pair": "USDCHF=X"
     },
     "SGD": {
-      "usdPer": 0.78216663,
-      "perUsd": 1.2785,
+      "usdPer": 0.78204427,
+      "perUsd": 1.2787,
       "pair": "USDSGD=X"
     },
     "SEK": {
@@ -76,8 +76,8 @@
       "pair": "USDSEK=X"
     },
     "NOK": {
-      "usdPer": 0.1060198,
-      "perUsd": 9.4322,
+      "usdPer": 0.10602093,
+      "perUsd": 9.4321,
       "pair": "USDNOK=X"
     },
     "DKK": {
@@ -96,8 +96,8 @@
       "pair": "USDMXN=X"
     },
     "ZAR": {
-      "usdPer": 0.06185669,
-      "perUsd": 16.166401,
+      "usdPer": 0.06175699,
+      "perUsd": 16.192499,
       "pair": "USDZAR=X"
     },
     "SAR": {
