@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-08-22T21:12:23.652828Z",
+  "updatedAt": "2026-08-22T21:34:10.543657Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -11,8 +11,8 @@
       "pair": "EURUSD=X"
     },
     "GBP": {
-      "usdPer": 1.36442411,
-      "perUsd": 0.73291,
+      "usdPer": 1.36483371,
+      "perUsd": 0.73269,
       "pair": "GBPUSD=X"
     },
     "AUD": {
