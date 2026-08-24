@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "fetchedAt": "2026-08-17T05:02:12.148459Z",
+  "fetchedAt": "2026-08-24T05:03:44.058177Z",
   "people": [
     {
       "qid": "Q90959587",
@@ -77,14 +77,14 @@
         "birthPlace": "Beirut",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Noubar%20Afeyan%20at%20Global%20Innovation%20Forum%202022%2C%20Yerevan%2C%20Armenia%20by%20Xelgen.jpg",
         "occupations": [
-          "businessperson",
           "donor",
-          "inventor",
-          "entrepreneur"
+          "entrepreneur",
+          "businessperson",
+          "inventor"
         ],
         "education": [
-          "Massachusetts Institute of Technology",
-          "McGill University"
+          "McGill University",
+          "Massachusetts Institute of Technology"
         ],
         "employers": [],
         "positions": []
@@ -173,8 +173,8 @@
           "university teacher",
           "biotechnologist",
           "biochemist",
-          "inventor",
-          "engineer"
+          "engineer",
+          "inventor"
         ],
         "education": [
           "The Milne School",
@@ -210,8 +210,8 @@
         "image": null,
         "occupations": [
           "professor",
-          "researcher",
-          "physician"
+          "physician",
+          "researcher"
         ],
         "education": [
           "Hebrew Reali School",
@@ -220,17 +220,17 @@
         ],
         "employers": [
           {
-            "company": "Moderna",
-            "start": null,
-            "end": null
-          },
-          {
             "company": "Sanofi",
             "start": null,
             "end": null
           },
           {
             "company": "GSK",
+            "start": null,
+            "end": null
+          },
+          {
+            "company": "Moderna",
             "start": null,
             "end": null
           },
@@ -326,6 +326,16 @@
             "end": "2017-01-01"
           },
           {
+            "company": "Intellia Therapeutics",
+            "start": "2017-07-24",
+            "end": "2017-08-09"
+          },
+          {
+            "company": "Galvani Bioelectronics",
+            "start": "2016-01-01",
+            "end": null
+          },
+          {
             "company": "Lonza Group",
             "start": "2020-04-01",
             "end": "2020-05-17"
@@ -339,16 +349,6 @@
             "company": "Qatar Foundation",
             "start": "2009-01-01",
             "end": "2020-01-01"
-          },
-          {
-            "company": "Intellia Therapeutics",
-            "start": "2017-07-24",
-            "end": "2017-08-09"
-          },
-          {
-            "company": "Galvani Bioelectronics",
-            "start": "2016-01-01",
-            "end": null
           }
         ],
         "positions": []
