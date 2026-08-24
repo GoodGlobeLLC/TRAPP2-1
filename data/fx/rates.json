@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-08-24T12:46:07.594595Z",
+  "updatedAt": "2026-08-24T14:22:53.581569Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -11,43 +11,43 @@
       "pair": "EURUSD=X"
     },
     "GBP": {
-      "usdPer": 1.36386573,
-      "perUsd": 0.73321,
+      "usdPer": 1.36394024,
+      "perUsd": 0.73317,
       "pair": "GBPUSD=X"
     },
     "AUD": {
-      "usdPer": 0.71653771,
-      "perUsd": 1.3956,
+      "usdPer": 0.71633238,
+      "perUsd": 1.396,
       "pair": "AUDUSD=X"
     },
     "NZD": {
-      "usdPer": 0.59672993,
-      "perUsd": 1.6758,
+      "usdPer": 0.59669429,
+      "perUsd": 1.6759,
       "pair": "NZDUSD=X"
     },
     "JPY": {
-      "usdPer": 0.00628868,
-      "perUsd": 159.016006,
+      "usdPer": 0.00628306,
+      "perUsd": 159.158005,
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.00072328,
-      "perUsd": 1382.589966,
+      "usdPer": 0.0007224,
+      "perUsd": 1384.280029,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14902686,
-      "perUsd": 6.7102,
+      "usdPer": 0.1490202,
+      "perUsd": 6.7105,
       "pair": "USDCNY=X"
     },
     "HKD": {
-      "usdPer": 0.12759724,
-      "perUsd": 7.83716,
+      "usdPer": 0.1276049,
+      "perUsd": 7.83669,
       "pair": "USDHKD=X"
     },
     "TWD": {
-      "usdPer": 0.03143369,
-      "perUsd": 31.813,
+      "usdPer": 0.03141592,
+      "perUsd": 31.830999,
       "pair": "USDTWD=X"
     },
     "INR": {
@@ -56,33 +56,33 @@
       "pair": "USDINR=X"
     },
     "CAD": {
-      "usdPer": 0.72285675,
-      "perUsd": 1.3834,
+      "usdPer": 0.72317039,
+      "perUsd": 1.3828,
       "pair": "USDCAD=X"
     },
     "CHF": {
-      "usdPer": 1.24602826,
-      "perUsd": 0.80255,
+      "usdPer": 1.24643205,
+      "perUsd": 0.80229,
       "pair": "USDCHF=X"
     },
     "SGD": {
-      "usdPer": 0.78733337,
-      "perUsd": 1.27011,
+      "usdPer": 0.78720939,
+      "perUsd": 1.27031,
       "pair": "USDSGD=X"
     },
     "SEK": {
-      "usdPer": 0.10531093,
-      "perUsd": 9.49569,
+      "usdPer": 0.10530195,
+      "perUsd": 9.4965,
       "pair": "USDSEK=X"
     },
     "NOK": {
-      "usdPer": 0.10752943,
-      "perUsd": 9.29978,
+      "usdPer": 0.10750214,
+      "perUsd": 9.30214,
       "pair": "USDNOK=X"
     },
     "DKK": {
-      "usdPer": 0.156071,
-      "perUsd": 6.40734,
+      "usdPer": 0.1560766,
+      "perUsd": 6.40711,
       "pair": "USDDKK=X"
     },
     "BRL": {
@@ -91,13 +91,13 @@
       "pair": "USDBRL=X"
     },
     "MXN": {
-      "usdPer": 0.05903941,
-      "perUsd": 16.93784,
+      "usdPer": 0.05901446,
+      "perUsd": 16.945,
       "pair": "USDMXN=X"
     },
     "ZAR": {
-      "usdPer": 0.06245082,
-      "perUsd": 16.0126,
+      "usdPer": 0.06247306,
+      "perUsd": 16.006901,
       "pair": "USDZAR=X"
     },
     "SAR": {
@@ -106,23 +106,23 @@
       "pair": "USDSAR=X"
     },
     "ILS": {
-      "usdPer": 0.33423354,
-      "perUsd": 2.99192,
+      "usdPer": 0.33351789,
+      "perUsd": 2.99834,
       "pair": "USDILS=X"
     },
     "THB": {
-      "usdPer": 0.03060912,
-      "perUsd": 32.669998,
+      "usdPer": 0.03059975,
+      "perUsd": 32.68,
       "pair": "USDTHB=X"
     },
     "IDR": {
-      "usdPer": 5.648e-05,
-      "perUsd": 17705.0,
+      "usdPer": 5.65e-05,
+      "perUsd": 17698.0,
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24749411,
-      "perUsd": 4.0405,
+      "usdPer": 0.24752475,
+      "perUsd": 4.04,
       "pair": "USDMYR=X"
     },
     "RUB": {
@@ -131,13 +131,13 @@
       "pair": "USDRUB=X"
     },
     "PLN": {
-      "usdPer": 0.27086691,
-      "perUsd": 3.69185,
+      "usdPer": 0.2709403,
+      "perUsd": 3.69085,
       "pair": "USDPLN=X"
     },
     "TRY": {
-      "usdPer": 0.02080023,
-      "perUsd": 48.076401,
+      "usdPer": 0.02079988,
+      "perUsd": 48.077202,
       "pair": "USDTRY=X"
     }
   }
