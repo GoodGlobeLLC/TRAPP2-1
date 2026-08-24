@@ -1,6 +1,6 @@
 {
   "ticker": "TSN",
-  "fetchedAt": "2026-08-17T07:12:36.916234Z",
+  "fetchedAt": "2026-08-24T07:14:00.902465Z",
   "people": [
     {
       "qid": "Q114819469",
@@ -146,6 +146,16 @@
         ],
         "employers": [
           {
+            "company": "Salesforce",
+            "start": "2010-02-01",
+            "end": "2018-04-01"
+          },
+          {
+            "company": "Bell Labs",
+            "start": "1980-01-01",
+            "end": "1991-01-01"
+          },
+          {
             "company": "Microsoft",
             "start": "2003-06-01",
             "end": "2009-09-01"
@@ -159,16 +169,6 @@
             "company": "Cisco",
             "start": "2018-04-01",
             "end": null
-          },
-          {
-            "company": "Salesforce",
-            "start": "2010-02-01",
-            "end": "2018-04-01"
-          },
-          {
-            "company": "Bell Labs",
-            "start": "1980-01-01",
-            "end": "1991-01-01"
           }
         ],
         "positions": []
@@ -248,9 +248,9 @@
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Governor%20Mike%20Beebe.jpg",
         "occupations": [
           "prosecutor",
-          "lawyer",
           "jurist",
           "governor",
+          "lawyer",
           "politician"
         ],
         "education": [
