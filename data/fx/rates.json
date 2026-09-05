@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-09-05T11:54:03.623734Z",
+  "updatedAt": "2026-09-05T14:04:47.154021Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -126,8 +126,8 @@
       "pair": "USDMYR=X"
     },
     "RUB": {
-      "usdPer": 0.01164687,
-      "perUsd": 85.860001,
+      "usdPer": 0.01166181,
+      "perUsd": 85.75,
       "pair": "USDRUB=X"
     },
     "PLN": {
