@@ -1,16 +1,16 @@
 {
-  "date": "2026-09-07",
+  "date": "2026-09-08",
   "regime": "risk_on_melt_up",
   "confidence": 0.981,
   "scores": {
     "macro": 0.127,
-    "liquidity": 0.383,
-    "volatility": 0.855,
+    "liquidity": 0.374,
+    "volatility": 0.794,
     "valuation": -0.368,
     "trend": 0.907,
     "breadth": 0.091,
     "commodity": 0.61,
-    "crypto": 0.768
+    "crypto": 0.728
   },
   "signal_confidences": {
     "macro": 1.0,
@@ -23,12 +23,12 @@
     "crypto": 1.0
   },
   "current_probabilities": {
-    "expansion": 0.3523,
-    "risk_on_melt_up": 0.6049,
-    "inflation_shock": 0.0013,
+    "expansion": 0.3733,
+    "risk_on_melt_up": 0.5763,
+    "inflation_shock": 0.0017,
     "recession_fear": 0.0,
     "risk_off": 0.0001,
-    "neutral": 0.0414
+    "neutral": 0.0486
   },
   "drivers": [
     {
@@ -40,16 +40,16 @@
     },
     {
       "signal": "volatility",
-      "score": 0.855,
+      "score": 0.794,
       "confidence": 1.0,
-      "weight": 0.855,
+      "weight": 0.794,
       "direction": "bullish"
     },
     {
       "signal": "crypto",
-      "score": 0.768,
+      "score": 0.728,
       "confidence": 1.0,
-      "weight": 0.768,
+      "weight": 0.728,
       "direction": "bullish"
     }
   ],
@@ -61,12 +61,12 @@
     },
     "liquidity": {
       "t10y2y": 0.41,
-      "hy_spread": 2.65,
-      "hy_spread_z": -1.13,
+      "hy_spread": 2.68,
+      "hy_spread_z": -1.05,
       "hyg_minus_lqd_1m": 0.0073
     },
     "volatility": {
-      "vix_level": 14.32,
+      "vix_level": 15.3,
       "vix9d_over_vix": NaN
     },
     "valuation": {
@@ -94,48 +94,48 @@
       "n_components": 3
     },
     "crypto": {
-      "btc_30d_return": 0.2384,
-      "btc_pct_from_50dma": 0.1577,
-      "eth_30d_return": 0.3143,
+      "btc_30d_return": 0.219,
+      "btc_pct_from_50dma": 0.1352,
+      "eth_30d_return": 0.3004,
       "n_components": 3
     }
   },
-  "computed_at": "2026-09-07T19:28:00+00:00",
+  "computed_at": "2026-09-08T18:56:56+00:00",
   "transitions": {
     "1_step": {
-      "expansion": 0.0625,
-      "risk_on_melt_up": 0.8125,
-      "inflation_shock": 0.0312,
-      "recession_fear": 0.0312,
-      "risk_off": 0.0312,
-      "neutral": 0.0312
+      "expansion": 0.0606,
+      "risk_on_melt_up": 0.8182,
+      "inflation_shock": 0.0303,
+      "recession_fear": 0.0303,
+      "risk_off": 0.0303,
+      "neutral": 0.0303
     },
     "5_step": {
-      "expansion": 0.2424,
-      "risk_on_melt_up": 0.4593,
-      "inflation_shock": 0.0532,
-      "recession_fear": 0.0532,
-      "risk_off": 0.0532,
-      "neutral": 0.1388
+      "expansion": 0.2374,
+      "risk_on_melt_up": 0.47,
+      "inflation_shock": 0.0522,
+      "recession_fear": 0.0522,
+      "risk_off": 0.0522,
+      "neutral": 0.1359
     },
     "20_step": {
-      "expansion": 0.3525,
-      "risk_on_melt_up": 0.2937,
-      "inflation_shock": 0.0545,
-      "recession_fear": 0.0545,
-      "risk_off": 0.0545,
-      "neutral": 0.1902
+      "expansion": 0.3491,
+      "risk_on_melt_up": 0.3005,
+      "inflation_shock": 0.054,
+      "recession_fear": 0.054,
+      "risk_off": 0.054,
+      "neutral": 0.1883
     }
   },
   "stationary": {
-    "expansion": 0.3545,
-    "risk_on_melt_up": 0.2909,
-    "inflation_shock": 0.0545,
-    "recession_fear": 0.0545,
-    "risk_off": 0.0545,
-    "neutral": 0.1909
+    "expansion": 0.3514,
+    "risk_on_melt_up": 0.2973,
+    "inflation_shock": 0.0541,
+    "recession_fear": 0.0541,
+    "risk_off": 0.0541,
+    "neutral": 0.1892
   },
-  "expected_persistence_days": 5.3,
+  "expected_persistence_days": 5.5,
   "transition_matrix": [
     [
       0.7949,
@@ -146,12 +146,12 @@
       0.0769
     ],
     [
-      0.0625,
-      0.8125,
-      0.0312,
-      0.0312,
-      0.0312,
-      0.0312
+      0.0606,
+      0.8182,
+      0.0303,
+      0.0303,
+      0.0303,
+      0.0303
     ],
     [
       0.1667,
@@ -186,7 +186,7 @@
       0.6667
     ]
   ],
-  "transition_observation_count": 74,
+  "transition_observation_count": 75,
   "transition_warning": null,
-  "transitions_computed_at": "2026-09-07T19:28:00+00:00"
+  "transitions_computed_at": "2026-09-08T18:56:56+00:00"
 }
