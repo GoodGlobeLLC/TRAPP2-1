@@ -1,13 +1,13 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-09-19T10:52:17.485403Z",
+  "updatedAt": "2026-09-19T14:01:24.318243Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
     "EUR": {
-      "usdPer": 1.14889705,
-      "perUsd": 0.8704,
+      "usdPer": 1.14902914,
+      "perUsd": 0.8703,
       "pair": "EURUSD=X"
     },
     "GBP": {
