@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-09-26T00:13:07.844924Z",
+  "updatedAt": "2026-09-26T04:56:02.490368Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -31,13 +31,13 @@
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.00073785,
-      "perUsd": 1355.280029,
+      "usdPer": 0.00073833,
+      "perUsd": 1354.400024,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14898023,
-      "perUsd": 6.7123,
+      "usdPer": 0.14897579,
+      "perUsd": 6.7125,
       "pair": "USDCNY=X"
     },
     "HKD": {
@@ -51,13 +51,13 @@
       "pair": "USDTWD=X"
     },
     "INR": {
-      "usdPer": 0.0104382,
-      "perUsd": 95.802002,
+      "usdPer": 0.01043623,
+      "perUsd": 95.82,
       "pair": "USDINR=X"
     },
     "CAD": {
-      "usdPer": 0.70726359,
-      "perUsd": 1.4139,
+      "usdPer": 0.70716354,
+      "perUsd": 1.4141,
       "pair": "USDCAD=X"
     },
     "CHF": {
@@ -76,8 +76,8 @@
       "pair": "USDSEK=X"
     },
     "NOK": {
-      "usdPer": 0.10523214,
-      "perUsd": 9.5028,
+      "usdPer": 0.10521553,
+      "perUsd": 9.5043,
       "pair": "USDNOK=X"
     },
     "DKK": {
@@ -96,8 +96,8 @@
       "pair": "USDMXN=X"
     },
     "ZAR": {
-      "usdPer": 0.06144469,
-      "perUsd": 16.274799,
+      "usdPer": 0.06144393,
+      "perUsd": 16.275,
       "pair": "USDZAR=X"
     },
     "SAR": {
@@ -116,18 +116,18 @@
       "pair": "USDTHB=X"
     },
     "IDR": {
-      "usdPer": 5.583e-05,
-      "perUsd": 17912.0,
+      "usdPer": 5.59e-05,
+      "perUsd": 17890.0,
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24570024,
-      "perUsd": 4.07,
+      "usdPer": 0.24560974,
+      "perUsd": 4.0715,
       "pair": "USDMYR=X"
     },
     "RUB": {
-      "usdPer": 0.01187846,
-      "perUsd": 84.185997,
+      "usdPer": 0.01189414,
+      "perUsd": 84.074997,
       "pair": "USDRUB=X"
     },
     "PLN": {
