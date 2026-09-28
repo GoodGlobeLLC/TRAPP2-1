@@ -1,6 +1,6 @@
 {
   "ticker": "TSN",
-  "fetchedAt": "2026-09-21T12:56:58.559775Z",
+  "fetchedAt": "2026-09-28T13:35:44.237750Z",
   "people": [
     {
       "qid": "Q114819469",
@@ -146,6 +146,11 @@
         ],
         "employers": [
           {
+            "company": "Bell Labs",
+            "start": "1980-01-01",
+            "end": "1991-01-01"
+          },
+          {
             "company": "Microsoft",
             "start": "2003-06-01",
             "end": "2009-09-01"
@@ -159,11 +164,6 @@
             "company": "Cisco",
             "start": "2018-04-01",
             "end": null
-          },
-          {
-            "company": "Bell Labs",
-            "start": "1980-01-01",
-            "end": "1991-01-01"
           },
           {
             "company": "Salesforce",
@@ -247,9 +247,9 @@
         "birthPlace": "Amagon",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Governor%20Mike%20Beebe.jpg",
         "occupations": [
-          "governor",
           "prosecutor",
           "jurist",
+          "governor",
           "lawyer",
           "politician"
         ],
@@ -295,11 +295,6 @@
         ],
         "employers": [
           {
-            "company": "J.P. Morgan & Co.",
-            "start": null,
-            "end": null
-          },
-          {
             "company": "Tyson Foods",
             "start": "2019-01-01",
             "end": "2022-01-01"
@@ -313,6 +308,11 @@
             "company": "Tyson Foods",
             "start": "2022-01-01",
             "end": "2024-01-01"
+          },
+          {
+            "company": "J.P. Morgan & Co.",
+            "start": null,
+            "end": null
           }
         ],
         "positions": []
