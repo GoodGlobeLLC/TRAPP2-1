@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-10-01T20:29:11.264018Z",
+  "updatedAt": "2026-10-02T20:06:44.823169Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -186,6 +186,10 @@
       "iso3": "MEX",
       "gdpUsd": 1832641364775.52,
       "gdpUsdYear": "2025",
+      "exportsPctGdp": 39.6453397926899,
+      "exportsPctGdpYear": "2025",
+      "importsPctGdp": 40.2786127888756,
+      "importsPctGdpYear": "2025",
       "tradePctGdp": 79.9239525815655,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.561683456144578,
