@@ -1,18 +1,18 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-10-18T23:26:06.127348Z",
+  "updatedAt": "2026-10-19T01:26:24.363930Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
     "EUR": {
-      "usdPer": 1.12195671,
-      "perUsd": 0.8913,
+      "usdPer": 1.12271249,
+      "perUsd": 0.8907,
       "pair": "EURUSD=X"
     },
     "GBP": {
-      "usdPer": 1.33272922,
-      "perUsd": 0.75034,
+      "usdPer": 1.33269358,
+      "perUsd": 0.75036,
       "pair": "GBPUSD=X"
     },
     "AUD": {
@@ -21,23 +21,23 @@
       "pair": "AUDUSD=X"
     },
     "NZD": {
-      "usdPer": 0.56538701,
-      "perUsd": 1.7687,
+      "usdPer": 0.56557888,
+      "perUsd": 1.7681,
       "pair": "NZDUSD=X"
     },
     "JPY": {
-      "usdPer": 0.00633541,
-      "perUsd": 157.843002,
+      "usdPer": 0.00632843,
+      "perUsd": 158.016998,
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.00074945,
-      "perUsd": 1334.319946,
+      "usdPer": 0.00074885,
+      "perUsd": 1335.380005,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.14957744,
-      "perUsd": 6.6855,
+      "usdPer": 0.14979478,
+      "perUsd": 6.6758,
       "pair": "USDCNY=X"
     },
     "HKD": {
@@ -46,8 +46,8 @@
       "pair": "USDHKD=X"
     },
     "TWD": {
-      "usdPer": 0.03083755,
-      "perUsd": 32.428001,
+      "usdPer": 0.03080525,
+      "perUsd": 32.462002,
       "pair": "USDTWD=X"
     },
     "INR": {
@@ -56,63 +56,63 @@
       "pair": "USDINR=X"
     },
     "CAD": {
-      "usdPer": 0.70789947,
-      "perUsd": 1.41263,
+      "usdPer": 0.70809493,
+      "perUsd": 1.41224,
       "pair": "USDCAD=X"
     },
     "CHF": {
-      "usdPer": 1.2132683,
-      "perUsd": 0.82422,
+      "usdPer": 1.21306224,
+      "perUsd": 0.82436,
       "pair": "USDCHF=X"
     },
     "SGD": {
-      "usdPer": 0.7814942,
-      "perUsd": 1.2796,
+      "usdPer": 0.78136601,
+      "perUsd": 1.27981,
       "pair": "USDSGD=X"
     },
     "SEK": {
-      "usdPer": 0.10080534,
-      "perUsd": 9.92011,
+      "usdPer": 0.10085434,
+      "perUsd": 9.91529,
       "pair": "USDSEK=X"
     },
     "NOK": {
-      "usdPer": 0.10598317,
-      "perUsd": 9.43546,
+      "usdPer": 0.10605298,
+      "perUsd": 9.42925,
       "pair": "USDNOK=X"
     },
     "DKK": {
-      "usdPer": 0.15006836,
-      "perUsd": 6.66363,
+      "usdPer": 0.15016368,
+      "perUsd": 6.6594,
       "pair": "USDDKK=X"
     },
     "BRL": {
-      "usdPer": 0.19726589,
-      "perUsd": 5.0693,
+      "usdPer": 0.19745286,
+      "perUsd": 5.0645,
       "pair": "USDBRL=X"
     },
     "MXN": {
-      "usdPer": 0.05419467,
-      "perUsd": 18.452,
+      "usdPer": 0.05419731,
+      "perUsd": 18.451099,
       "pair": "USDMXN=X"
     },
     "ZAR": {
-      "usdPer": 0.06072198,
-      "perUsd": 16.4685,
+      "usdPer": 0.06072825,
+      "perUsd": 16.466801,
       "pair": "USDZAR=X"
     },
     "SAR": {
-      "usdPer": 0.26648191,
-      "perUsd": 3.7526,
+      "usdPer": 0.266489,
+      "perUsd": 3.7525,
       "pair": "USDSAR=X"
     },
     "ILS": {
-      "usdPer": 0.32141938,
-      "perUsd": 3.1112,
+      "usdPer": 0.32271597,
+      "perUsd": 3.0987,
       "pair": "USDILS=X"
     },
     "THB": {
-      "usdPer": 0.02994909,
-      "perUsd": 33.389999,
+      "usdPer": 0.02993116,
+      "perUsd": 33.41,
       "pair": "USDTHB=X"
     },
     "IDR": {
@@ -121,8 +121,8 @@
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24515813,
-      "perUsd": 4.079,
+      "usdPer": 0.24521824,
+      "perUsd": 4.078,
       "pair": "USDMYR=X"
     },
     "RUB": {
@@ -131,13 +131,13 @@
       "pair": "USDRUB=X"
     },
     "PLN": {
-      "usdPer": 0.25687791,
-      "perUsd": 3.8929,
+      "usdPer": 0.25681853,
+      "perUsd": 3.8938,
       "pair": "USDPLN=X"
     },
     "TRY": {
-      "usdPer": 0.02020108,
-      "perUsd": 49.5023,
+      "usdPer": 0.02019847,
+      "perUsd": 49.508701,
       "pair": "USDTRY=X"
     }
   }
