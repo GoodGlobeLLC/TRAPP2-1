@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-worldbank-v1",
   "_description": "Annual GDP + trade composition from the World Bank (free API, no key). Data is typically 6-18 months lagged.",
-  "updatedAt": "2026-10-16T18:57:54.832716Z",
+  "updatedAt": "2026-10-19T20:43:06.390682Z",
   "source": "World Bank (api.worldbank.org)",
   "countries": {
     "USA": {
@@ -178,7 +178,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.00701840291242,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 12
+      "gdpRank": 11
     },
     "MEX": {
       "name": "Mexico",
@@ -194,7 +194,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 0.561683456144578,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 13
+      "gdpRank": 12
     },
     "AUS": {
       "name": "Australia",
@@ -210,14 +210,12 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.35039785076631,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 14
+      "gdpRank": 13
     },
     "ESP": {
       "name": "Spain",
       "etf": "EWP",
       "iso3": "ESP",
-      "gdpUsd": 1906453309985.88,
-      "gdpUsdYear": "2025",
       "exportsPctGdp": 36.6374813887545,
       "exportsPctGdpYear": "2025",
       "importsPctGdp": 32.8133446186236,
@@ -225,8 +223,7 @@
       "tradePctGdp": 69.4508260073781,
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 2.82495400578509,
-      "gdpGrowthPctYear": "2025",
-      "gdpRank": 11
+      "gdpGrowthPctYear": "2025"
     },
     "IDN": {
       "name": "Indonesia",
@@ -242,7 +239,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 5.10808904438025,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 15
+      "gdpRank": 14
     },
     "SAU": {
       "name": "Saudi Arabia",
@@ -258,7 +255,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 4.50246560191663,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 16
+      "gdpRank": 15
     },
     "TWN": {
       "name": "Taiwan",
@@ -279,7 +276,7 @@
       "tradePctGdpYear": "2025",
       "gdpGrowthPct": 1.30007790958307,
       "gdpGrowthPctYear": "2025",
-      "gdpRank": 17
+      "gdpRank": 16
     }
   }
 }
