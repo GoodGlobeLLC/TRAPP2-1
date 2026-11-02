@@ -1,6 +1,6 @@
 {
   "ticker": "TSN",
-  "fetchedAt": "2026-10-26T12:43:23.779968Z",
+  "fetchedAt": "2026-11-02T15:29:46.607029Z",
   "people": [
     {
       "qid": "Q114819469",
@@ -151,11 +151,6 @@
             "end": "1991-01-01"
           },
           {
-            "company": "Salesforce",
-            "start": "2010-02-01",
-            "end": "2018-04-01"
-          },
-          {
             "company": "Microsoft",
             "start": "2003-06-01",
             "end": "2009-09-01"
@@ -169,6 +164,11 @@
             "company": "Cisco",
             "start": "2018-04-01",
             "end": null
+          },
+          {
+            "company": "Salesforce",
+            "start": "2010-02-01",
+            "end": "2018-04-01"
           }
         ],
         "positions": []
@@ -228,10 +228,20 @@
         ],
         "education": [
           "Springdale High School",
-          "Cox School of Business",
           "Southern Methodist University"
         ],
-        "employers": [],
+        "employers": [
+          {
+            "company": "Tyson Foods",
+            "start": "2000-01-01",
+            "end": null
+          },
+          {
+            "company": "Tyson Foods",
+            "start": "1998-01-01",
+            "end": null
+          }
+        ],
         "positions": []
       }
     },
@@ -248,9 +258,9 @@
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Governor%20Mike%20Beebe.jpg",
         "occupations": [
           "prosecutor",
-          "jurist",
           "governor",
           "lawyer",
+          "jurist",
           "politician"
         ],
         "education": [
