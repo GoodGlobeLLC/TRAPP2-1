@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "fetchedAt": "2026-10-26T10:20:03.326976Z",
+  "fetchedAt": "2026-11-02T12:29:28.265186Z",
   "people": [
     {
       "qid": "Q90959587",
@@ -14,14 +14,14 @@
         "birthPlace": "Marseille",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Stephane%20Bancel.png",
         "occupations": [
-          "chief executive officer",
-          "businessperson"
+          "businessperson",
+          "chief executive officer"
         ],
         "education": [
           "\u00c9cole Centrale Paris",
+          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve",
           "University of Minnesota",
-          "Harvard Business School",
-          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve"
+          "Harvard Business School"
         ],
         "employers": [
           {
@@ -83,8 +83,8 @@
           "donor"
         ],
         "education": [
-          "Massachusetts Institute of Technology",
-          "McGill University"
+          "McGill University",
+          "Massachusetts Institute of Technology"
         ],
         "employers": [],
         "positions": []
@@ -134,11 +134,6 @@
         ],
         "employers": [
           {
-            "company": "University of Michigan",
-            "start": null,
-            "end": null
-          },
-          {
             "company": "National Heart, Lung, and Blood Institute",
             "start": null,
             "end": null
@@ -150,6 +145,11 @@
           },
           {
             "company": "Brigham and Women's Hospital",
+            "start": null,
+            "end": null
+          },
+          {
+            "company": "University of Michigan",
             "start": null,
             "end": null
           }
@@ -169,27 +169,27 @@
         "birthPlace": "Albany",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Langer.jpg",
         "occupations": [
-          "inventor",
           "chemical engineer",
+          "biochemist",
           "university teacher",
           "biotechnologist",
-          "biochemist",
+          "inventor",
           "engineer"
         ],
         "education": [
-          "The Milne School",
-          "Cornell University College of Engineering",
+          "Cornell University",
           "Massachusetts Institute of Technology",
-          "Cornell University"
+          "The Milne School",
+          "Cornell University College of Engineering"
         ],
         "employers": [
           {
-            "company": "Massachusetts Institute of Technology",
+            "company": "Harvard University",
             "start": null,
             "end": null
           },
           {
-            "company": "Harvard University",
+            "company": "Massachusetts Institute of Technology",
             "start": null,
             "end": null
           }
@@ -209,9 +209,9 @@
         "birthPlace": "Haifa",
         "image": null,
         "occupations": [
-          "physician",
           "professor",
-          "researcher"
+          "researcher",
+          "physician"
         ],
         "education": [
           "Hebrew Reali School",
@@ -220,17 +220,17 @@
         ],
         "employers": [
           {
+            "company": "Moderna",
+            "start": null,
+            "end": null
+          },
+          {
             "company": "Sanofi",
             "start": null,
             "end": null
           },
           {
             "company": "GSK",
-            "start": null,
-            "end": null
-          },
-          {
-            "company": "Moderna",
             "start": null,
             "end": null
           },
@@ -255,14 +255,14 @@
         "birthPlace": "Marseille",
         "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Stephane%20Bancel.png",
         "occupations": [
-          "chief executive officer",
-          "businessperson"
+          "businessperson",
+          "chief executive officer"
         ],
         "education": [
           "\u00c9cole Centrale Paris",
+          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve",
           "University of Minnesota",
-          "Harvard Business School",
-          "Lyc\u00e9e priv\u00e9 Sainte-Genevi\u00e8ve"
+          "Harvard Business School"
         ],
         "employers": [
           {
@@ -303,28 +303,13 @@
           "researcher"
         ],
         "education": [
+          "Universit\u00e9 libre de Bruxelles",
+          "Harvard Medical School",
           "Tufts University School of Medicine",
           "Mohammed V high school",
-          "International Institute for Management Development",
-          "Universit\u00e9 libre de Bruxelles",
-          "Harvard Medical School"
+          "International Institute for Management Development"
         ],
         "employers": [
-          {
-            "company": "Lonza Group",
-            "start": "2020-04-01",
-            "end": "2020-05-17"
-          },
-          {
-            "company": "GSK",
-            "start": "1988-01-01",
-            "end": "2017-01-01"
-          },
-          {
-            "company": "Qatar Foundation",
-            "start": "2009-01-01",
-            "end": "2020-01-01"
-          },
           {
             "company": "University of Mons",
             "start": null,
@@ -339,6 +324,21 @@
             "company": "International AIDS Vaccine Initiative",
             "start": "2015-01-01",
             "end": "2017-01-01"
+          },
+          {
+            "company": "Lonza Group",
+            "start": "2020-04-01",
+            "end": "2020-05-17"
+          },
+          {
+            "company": "GSK",
+            "start": "1988-01-01",
+            "end": "2017-01-01"
+          },
+          {
+            "company": "Qatar Foundation",
+            "start": "2009-01-01",
+            "end": "2020-01-01"
           },
           {
             "company": "Intellia Therapeutics",
