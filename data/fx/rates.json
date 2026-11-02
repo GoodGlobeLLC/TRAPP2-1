@@ -1,18 +1,18 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-11-01T22:46:08.621303Z",
+  "updatedAt": "2026-11-02T01:56:19.535564Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
     "EUR": {
-      "usdPer": 1.11594689,
-      "perUsd": 0.8961,
+      "usdPer": 1.11719358,
+      "perUsd": 0.8951,
       "pair": "EURUSD=X"
     },
     "GBP": {
-      "usdPer": 1.3390646,
-      "perUsd": 0.74679,
+      "usdPer": 1.33895695,
+      "perUsd": 0.74685,
       "pair": "GBPUSD=X"
     },
     "AUD": {
@@ -21,33 +21,33 @@
       "pair": "AUDUSD=X"
     },
     "NZD": {
-      "usdPer": 0.56293631,
-      "perUsd": 1.7764,
+      "usdPer": 0.56230319,
+      "perUsd": 1.7784,
       "pair": "NZDUSD=X"
     },
     "JPY": {
-      "usdPer": 0.00635054,
-      "perUsd": 157.466995,
+      "usdPer": 0.0063375,
+      "perUsd": 157.791,
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.00075041,
-      "perUsd": 1332.609985,
+      "usdPer": 0.00074661,
+      "perUsd": 1339.380005,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.15049136,
-      "perUsd": 6.6449,
+      "usdPer": 0.15052307,
+      "perUsd": 6.6435,
       "pair": "USDCNY=X"
     },
     "HKD": {
-      "usdPer": 0.12749736,
-      "perUsd": 7.8433,
+      "usdPer": 0.12747151,
+      "perUsd": 7.84489,
       "pair": "USDHKD=X"
     },
     "TWD": {
-      "usdPer": 0.03067014,
-      "perUsd": 32.605,
+      "usdPer": 0.0306457,
+      "perUsd": 32.631001,
       "pair": "USDTWD=X"
     },
     "INR": {
@@ -56,33 +56,33 @@
       "pair": "USDINR=X"
     },
     "CAD": {
-      "usdPer": 0.71628618,
-      "perUsd": 1.39609,
+      "usdPer": 0.71563521,
+      "perUsd": 1.39736,
       "pair": "USDCAD=X"
     },
     "CHF": {
-      "usdPer": 1.21368064,
-      "perUsd": 0.82394,
+      "usdPer": 1.2122682,
+      "perUsd": 0.8249,
       "pair": "USDCHF=X"
     },
     "SGD": {
-      "usdPer": 0.7824359,
-      "perUsd": 1.27806,
+      "usdPer": 0.78188529,
+      "perUsd": 1.27896,
       "pair": "USDSGD=X"
     },
     "SEK": {
-      "usdPer": 0.10175756,
-      "perUsd": 9.82728,
+      "usdPer": 0.10192776,
+      "perUsd": 9.81087,
       "pair": "USDSEK=X"
     },
     "NOK": {
-      "usdPer": 0.10855866,
-      "perUsd": 9.21161,
+      "usdPer": 0.1086195,
+      "perUsd": 9.20645,
       "pair": "USDNOK=X"
     },
     "DKK": {
-      "usdPer": 0.14932839,
-      "perUsd": 6.69665,
+      "usdPer": 0.14947974,
+      "perUsd": 6.68987,
       "pair": "USDDKK=X"
     },
     "BRL": {
@@ -91,28 +91,28 @@
       "pair": "USDBRL=X"
     },
     "MXN": {
-      "usdPer": 0.05324042,
-      "perUsd": 18.782721,
+      "usdPer": 0.05325664,
+      "perUsd": 18.777,
       "pair": "USDMXN=X"
     },
     "ZAR": {
-      "usdPer": 0.05991145,
-      "perUsd": 16.691299,
+      "usdPer": 0.05986518,
+      "perUsd": 16.704201,
       "pair": "USDZAR=X"
     },
     "SAR": {
-      "usdPer": 0.26646061,
-      "perUsd": 3.7529,
+      "usdPer": 0.2664677,
+      "perUsd": 3.7528,
       "pair": "USDSAR=X"
     },
     "ILS": {
-      "usdPer": 0.31831927,
-      "perUsd": 3.1415,
+      "usdPer": 0.31861338,
+      "perUsd": 3.1386,
       "pair": "USDILS=X"
     },
     "THB": {
-      "usdPer": 0.02963841,
-      "perUsd": 33.740002,
+      "usdPer": 0.02962963,
+      "perUsd": 33.75,
       "pair": "USDTHB=X"
     },
     "IDR": {
@@ -121,8 +121,8 @@
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24666996,
-      "perUsd": 4.054,
+      "usdPer": 0.24606298,
+      "perUsd": 4.064,
       "pair": "USDMYR=X"
     },
     "RUB": {
@@ -131,13 +131,13 @@
       "pair": "USDRUB=X"
     },
     "PLN": {
-      "usdPer": 0.25250038,
-      "perUsd": 3.96039,
+      "usdPer": 0.25311009,
+      "perUsd": 3.95085,
       "pair": "USDPLN=X"
     },
     "TRY": {
-      "usdPer": 0.02002267,
-      "perUsd": 49.943401,
+      "usdPer": 0.02001393,
+      "perUsd": 49.965199,
       "pair": "USDTRY=X"
     }
   }
