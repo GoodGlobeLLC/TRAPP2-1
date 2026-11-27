@@ -4,13 +4,13 @@
   "confidence": 0.981,
   "scores": {
     "macro": -0.021,
-    "liquidity": -0.392,
-    "volatility": -0.712,
-    "valuation": -0.151,
+    "liquidity": -0.399,
+    "volatility": -0.727,
+    "valuation": -0.146,
     "trend": 0.225,
     "breadth": 0.273,
     "commodity": -0.279,
-    "crypto": -0.779
+    "crypto": -0.783
   },
   "signal_confidences": {
     "macro": 1.0,
@@ -23,33 +23,33 @@
     "crypto": 1.0
   },
   "current_probabilities": {
-    "expansion": 0.0099,
+    "expansion": 0.0094,
     "risk_on_melt_up": 0.0002,
-    "inflation_shock": 0.1159,
-    "recession_fear": 0.1422,
-    "risk_off": 0.4435,
-    "neutral": 0.2883
+    "inflation_shock": 0.1164,
+    "recession_fear": 0.145,
+    "risk_off": 0.4484,
+    "neutral": 0.2806
   },
   "drivers": [
     {
       "signal": "crypto",
-      "score": -0.779,
+      "score": -0.783,
       "confidence": 1.0,
-      "weight": 0.779,
+      "weight": 0.783,
       "direction": "bearish"
     },
     {
       "signal": "volatility",
-      "score": -0.712,
+      "score": -0.727,
       "confidence": 1.0,
-      "weight": 0.712,
+      "weight": 0.727,
       "direction": "bearish"
     },
     {
       "signal": "liquidity",
-      "score": -0.392,
+      "score": -0.399,
       "confidence": 1.0,
-      "weight": 0.392,
+      "weight": 0.399,
       "direction": "bearish"
     }
   ],
@@ -60,20 +60,20 @@
       "indpro_yoy": 0.0166
     },
     "liquidity": {
-      "t10y2y": 0.24,
-      "hy_spread": 3.72,
-      "hy_spread_z": 2.02,
+      "t10y2y": 0.25,
+      "hy_spread": 3.77,
+      "hy_spread_z": 2.16,
       "hyg_minus_lqd_1m": -0.0114
     },
     "volatility": {
-      "vix_level": 26.36,
-      "vix9d_over_vix": 1.1233
+      "vix_level": 26.8,
+      "vix9d_over_vix": 1.1049
     },
     "valuation": {
       "spy_pe": 22.8,
       "earnings_yield": 0.0439,
-      "real_10y": 0.0083,
-      "fed_model_spread": 0.0356
+      "real_10y": 0.0077,
+      "fed_model_spread": 0.0362
     },
     "trend": {
       "spy_price": 716.7,
@@ -94,13 +94,13 @@
       "n_components": 3
     },
     "crypto": {
-      "btc_30d_return": -0.2453,
-      "btc_pct_from_50dma": -0.1964,
-      "eth_30d_return": -0.2713,
+      "btc_30d_return": -0.2514,
+      "btc_pct_from_50dma": -0.1899,
+      "eth_30d_return": -0.2811,
       "n_components": 3
     }
   },
-  "computed_at": "2026-11-27T00:00:37+00:00",
+  "computed_at": "2026-11-27T23:40:44+00:00",
   "transitions": {
     "1_step": {
       "expansion": 0.1111,
@@ -188,5 +188,5 @@
   ],
   "transition_observation_count": 130,
   "transition_warning": null,
-  "transitions_computed_at": "2026-11-27T00:00:37+00:00"
+  "transitions_computed_at": "2026-11-27T23:40:44+00:00"
 }
