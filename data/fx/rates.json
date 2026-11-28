@@ -1,7 +1,7 @@
 {
   "_schema": "valuatio-fx-rates-v1",
   "_description": "USD-anchored FX rates, one convention per currency.",
-  "updatedAt": "2026-11-28T02:49:18.731020Z",
+  "updatedAt": "2026-11-28T10:59:19.757282Z",
   "base": "USD",
   "source": "fetch_fx.py (yfinance)",
   "rates": {
@@ -26,18 +26,18 @@
       "pair": "NZDUSD=X"
     },
     "JPY": {
-      "usdPer": 0.00627821,
-      "perUsd": 159.281006,
+      "usdPer": 0.006269,
+      "perUsd": 159.514999,
       "pair": "USDJPY=X"
     },
     "KRW": {
-      "usdPer": 0.00074431,
-      "perUsd": 1343.530029,
+      "usdPer": 0.00074968,
+      "perUsd": 1333.900024,
       "pair": "USDKRW=X"
     },
     "CNY": {
-      "usdPer": 0.15049136,
-      "perUsd": 6.6449,
+      "usdPer": 0.15028329,
+      "perUsd": 6.6541,
       "pair": "USDCNY=X"
     },
     "HKD": {
@@ -51,8 +51,8 @@
       "pair": "USDTWD=X"
     },
     "INR": {
-      "usdPer": 0.01081667,
-      "perUsd": 92.449898,
+      "usdPer": 0.01075384,
+      "perUsd": 92.989998,
       "pair": "USDINR=X"
     },
     "CAD": {
@@ -61,8 +61,8 @@
       "pair": "USDCAD=X"
     },
     "CHF": {
-      "usdPer": 1.19832233,
-      "perUsd": 0.8345,
+      "usdPer": 1.19660169,
+      "perUsd": 0.8357,
       "pair": "USDCHF=X"
     },
     "SGD": {
@@ -116,13 +116,13 @@
       "pair": "USDTHB=X"
     },
     "IDR": {
-      "usdPer": 5.647e-05,
-      "perUsd": 17708.0,
+      "usdPer": 5.466e-05,
+      "perUsd": 18295.0,
       "pair": "USDIDR=X"
     },
     "MYR": {
-      "usdPer": 0.24313154,
-      "perUsd": 4.113,
+      "usdPer": 0.2427479,
+      "perUsd": 4.1195,
       "pair": "USDMYR=X"
     },
     "RUB": {
